@@ -1,0 +1,13 @@
+{
+  "name": "magic-components",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Nikhil Saraf",
+  "license": "MIT",
+  "scripts": {
+    "dev": "browser-sync start --server --files ./**/*.{html,js,ts,tsx} --no-open --no-notify --directory"
+  },
+  "devDependencies": {
+    "browser-sync": "2.26.7"
+  }
+}
