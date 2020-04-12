@@ -127,7 +127,7 @@ declare global {
     CSS.Properties<number | string | 0>[K]
   >;
   type CSSPropertiesWithMultiValues = {
-    [K in keyof CSS.Properties<number | string | 0>]: ResponsiveValue<K>;
+    [K in keyof CSS.Properties<number | string | 0>]: CSSMutliValue<K>;
   };
 
   namespace React {
@@ -142,7 +142,7 @@ declare global {
     };
 
     type CSSProps = {
-      [K in keyof CSS.Properties<any>]?: CSS.Properties<any>[K];
+      [K in keyof CSS.Properties<any>]?: CSSMutliValue<K>;
     };
 
     type HTMLStyleProps = {

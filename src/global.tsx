@@ -1,6 +1,7 @@
 import { hash, sheet } from "./stylesheet";
 import { useTheme } from "./theme";
 import { cssParser } from "./magic";
+import React from "react";
 
 export const Global = ({
   style,
@@ -12,7 +13,7 @@ export const Global = ({
   };
 }) => {
   const theme = useTheme();
-  const memo = React.useMemo(() => {
+  React.useMemo(() => {
     const styles: any = {};
     for (var item in style) {
       const [css, _] = cssParser(style[item], theme);

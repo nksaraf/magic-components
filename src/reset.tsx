@@ -1,4 +1,5 @@
 import { Global } from "./global";
+import React from "react";
 
 const reset = {
   "*": { boxSizing: "border-box" },

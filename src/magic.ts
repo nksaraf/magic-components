@@ -35,8 +35,7 @@ export const createMagic = (
 
       // Set a flag if the current components had a previous className
       // similar to goober. This is the append/prepend flag
-      let append = GOOBER_REGEX.test(props.className);
-
+      let append = GOOBER_REGEX.test(className);
       css = Object.assign({}, defaultStyles, css);
       const theme = useTheme();
       const [motionProps, otherProps] = motionParser(props, theme) as any;

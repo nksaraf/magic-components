@@ -1,4 +1,4 @@
-import { CSSReset } from "../src";
+import { CSSReset, Global } from "../src";
 
 // glob({
 //   body: {
@@ -20,7 +20,8 @@ export default () => {
   const [state, setState] = React.useState(false);
   return (
     <>
-      <CSSReset />
+      {/* <CSSReset /> */}
+      {/* <Global style={{ body: { margin: 1 } }} /> */}
       <row animate={{ x: 100 }}>
         <div>hello world</div>
         <div>hello other world</div>
@@ -33,7 +34,7 @@ export default () => {
         <p
           id="hello"
           css={{
-            color: "red.100",
+            color: ["red.100", "blue.100", "green.100"],
             "&:hover": {
               color: "green.100",
             },
@@ -56,7 +57,13 @@ export default () => {
       <div color="red.100" whileHover={{ x: "100px" }} id="hello">
         Hello World Ne Iadsadw
       </div>
-      <button onTap={() => setState((s) => !s)}>Click me</button>
+      <button
+        onTap={() => setState((s) => !s)}
+        whileTap={{ scale: 0.9 }}
+        whileHover={{ scale: 1.1 }}
+      >
+        Click me
+      </button>
       {[1, 2, 3, 4, 5].map((item, i) => (
         <li
           custom={i}
