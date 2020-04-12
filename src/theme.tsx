@@ -1,11 +1,14 @@
 import React from "react";
-export const ThemeContext = React.createContext<any>({});
+import { baseTheme } from "./base-theme";
+export const ThemeContext = React.createContext<any>(baseTheme);
 export const ThemeProvider = ({
   theme = {},
   children,
-}: React.PropsWithChildren<{ theme: any }>) => {
+}: React.PropsWithChildren<{ theme?: any }>) => {
   return (
-    <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider value={theme || baseTheme}>
+      {children}
+    </ThemeContext.Provider>
   );
 };
 export const useTheme = () => {

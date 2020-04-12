@@ -1,11 +1,10 @@
-import { glob, ThemeProvider } from "magic-components";
-import { baseTheme } from "magic-components/base-theme";
+import { Global } from "magic-components";
 
-glob({
-  body: {
-    margin: "1px",
-  },
-});
+// glob({
+//   body: {
+//     margin: "1px",
+//   },
+// });
 
 const variants = {
   visible: (i) => ({
@@ -20,14 +19,13 @@ const variants = {
 export default () => {
   const [state, setState] = React.useState(false);
   return (
-    <ThemeProvider theme={baseTheme}>
+    <>
+      <Global style={{ body: { margin: "0px" } }} />
       <div color="red.100" whileHover={{ x: "100px" }} id="hello">
         Hello World Ne Iadsadw
       </div>
       <p id="hello">Hello World Ne Iadsadw</p>
-      <div pb={"10px"} mb={"-5"} color="green.900">
-        Hello World Ne Iadsadw
-      </div>
+      <div color="green.900">Hello World Ne Iadsadw</div>
       <div
         color="green.900"
         variants={{
@@ -47,6 +45,6 @@ export default () => {
           variants={variants}
         />
       ))}
-    </ThemeProvider>
+    </>
   );
 };
