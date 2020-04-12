@@ -19,7 +19,7 @@ export const Global = ({
       const [css, _] = cssParser(style[item], theme);
       styles[item] = css;
     }
-    return hash(styles, sheet, true, true);
+    return hash(styles, sheet, true, false);
   }, []);
 
   return <></>;
