@@ -1,6 +1,6 @@
 {
   "name": "magic-components",
-  "version": "0.0.1-beta.5",
+  "version": "0.0.1-beta.7",
   "description": "",
   "repository": "Nikhil Saraf/magic-components",
   "license": "MIT",
@@ -8,7 +8,7 @@
   "main": "dist/magic-components.cjs.js",
   "unpkg": "dist/magic-components.js",
   "module": "dist/magic-components.js",
-  "source": "src/index.ts",
+  "source": "src/index.tsx",
   "browser": "dist/magic-components.umd.js",
   "types": "dist/types",
   "files": [
