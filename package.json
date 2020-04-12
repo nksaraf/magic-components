@@ -1,13 +1,54 @@
 {
   "name": "magic-components",
-  "version": "1.0.0",
-  "main": "index.js",
-  "author": "Nikhil Saraf",
+  "version": "0.0.1-beta.2",
+  "description": "",
+  "repository": "Nikhil Saraf/magic-components",
   "license": "MIT",
+  "author": "Nikhil Saraf",
+  "main": "dist/magic-components.cjs.js",
+  "unpkg": "dist/magic-components.js",
+  "module": "dist/magic-components.js",
+  "source": "src/index.ts",
+  "browser": "dist/magic-components.umd.js",
+  "types": "dist/types",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "dev": "browser-sync start --server --files ./**/*.{html,js,ts,tsx} --no-open --no-notify --directory"
+    "build": "klap build -n Magic",
+    "postbuild": "tsc -p tsconfig.json",
+    "dev": "browser-sync start --server --files ./**/*.{html,js,ts,tsx} --no-open --no-notify --directory",
+    "prepublishOnly": "yarn build",
+    "start": "klap start",
+    "watch": "klap watch"
+  },
+  "prettier": {},
+  "dependencies": {
+    "@nksaraf/colors": "^0.0.2",
+    "color": "^3.1.2",
+    "framer-motion": "^2.0.0-beta.42"
   },
   "devDependencies": {
-    "browser-sync": "2.26.7"
+    "@types/node": "^13.11.1",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
+    "browser-sync": "2.26.7",
+    "klap": "4.2.3",
+    "next": "^9.3.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "typescript": "3.8.3"
+  },
+  "peerDependencies": {
+    "react": "^16.8",
+    "react-dom": "^16.8"
+  },
+  "klap": {
+    "example": "public/index.tsx",
+    "globals": {
+      "framer-motion": "Motion",
+      "@nksaraf/colors": "Colors",
+      "react": "React"
+    }
   }
 }
