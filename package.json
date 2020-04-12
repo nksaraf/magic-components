@@ -1,6 +1,6 @@
 {
   "name": "magic-components",
-  "version": "0.0.1-beta.7",
+  "version": "0.0.1-beta.8",
   "description": "",
   "repository": "Nikhil Saraf/magic-components",
   "license": "MIT",
@@ -17,7 +17,7 @@
   ],
   "scripts": {
     "build": "klap build -n Magic",
-    "postbuild": "tsc -p tsconfig.json",
+    "postbuild": "tsc -p tsconfig.klap.json",
     "dev": "browser-sync start --server --files ./**/*.{html,js,ts,tsx} --no-open --no-notify --directory",
     "prepublishOnly": "yarn build",
     "start": "klap start",
