@@ -164,3 +164,13 @@ export const hash = (compiled: object, sheet: any, global: boolean, append: bool
   // return hash
   return className.slice(1);
 };
+
+
+let sheet: any;
+if (typeof window !== "undefined") {
+  sheet = getSheet(document && document.head);
+} else {
+  sheet = getSheet();
+}
+
+export { sheet };

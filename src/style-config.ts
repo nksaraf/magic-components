@@ -55,7 +55,7 @@ const defaults = {
   sizes: [0, 4, 8, 16, 32, 64, 128, 256, 512],
 };
 
-export const background: ConfigObject = {
+export const background = {
   bg: {
     property: "background",
     scale: "colors",
@@ -94,7 +94,7 @@ export const background: ConfigObject = {
   },
 };
 
-export const border: ConfigObject = {
+export const border = {
   border: {
     property: "border",
     scale: "borders",
@@ -235,7 +235,7 @@ export const border: ConfigObject = {
   },
 };
 
-export const color: ConfigObject = {
+export const color = {
   color: {
     property: "color",
     scale: "colors",
@@ -261,7 +261,7 @@ export const color: ConfigObject = {
   },
 };
 
-export const typography: ConfigObject = {
+export const typography = {
   fontFamily: {
     property: "fontFamily",
     scale: "fonts",
@@ -296,7 +296,7 @@ export const typography: ConfigObject = {
   textDecor: { property: "textDecoration" },
 };
 
-export const flexbox: ConfigObject = {
+export const flexbox = {
   alignItems: true,
   alignContent: true,
   justifyItems: true,
@@ -319,7 +319,7 @@ export const flexbox: ConfigObject = {
   },
 };
 
-export const grid: ConfigObject = {
+export const grid = {
   gridGap: {
     property: "gridGap",
     scale: "space",
@@ -356,7 +356,7 @@ function transformPercentageOrPx(value: any, scale: any) {
   return get(scale, value, defaultValue);
 }
 
-export const layout: ConfigObject = {
+export const layout = {
   width: {
     property: "width",
     scale: "sizes",
@@ -425,7 +425,7 @@ export const layout: ConfigObject = {
   boxSizing: true,
 };
 
-export const others: ConfigObject = {
+export const others = {
   animation: true,
   appearance: true,
   transform: true,
@@ -445,7 +445,7 @@ export const others: ConfigObject = {
   listStyleImage: true,
 };
 
-export const position: ConfigObject = {
+export const position = {
   position: true,
   pos: {
     property: "position",
@@ -496,7 +496,7 @@ const shared = {
   fallbackScale: defaults.space,
 };
 
-export const space: ConfigObject = {
+export const space = {
   margin: {
     property: "margin",
     transform: positiveOrNegativePx,
@@ -676,3 +676,5 @@ export const allConfig = {
   ...shadow,
   ...space,
 };
+
+export type StyleProps = keyof typeof allConfig;
