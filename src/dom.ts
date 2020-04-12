@@ -1,4 +1,4 @@
-const domElements = [
+export const elements = [
   "a",
   "abbr",
   "address",

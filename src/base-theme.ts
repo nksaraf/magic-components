@@ -1,4 +1,4 @@
-// const { colors } = require("./colors");
+import { colors } from '@nksaraf/colors';
 // const Color = require("color");
 
 function fontStack(fonts) {
@@ -23,7 +23,7 @@ const sizes = [0, 4, 8, 12, 16, 24, 32, 40, 48, 64, 80, 96, 112, 128]
 // sizes["threeLines"] = 96;
 // sizes["fourLines"] = 128;
 
-const theme = {
+export const baseTheme = {
   breakpoints: ["544px", "768px", "1012px", "1280px"],
   colors,
   fontSizes: [11, 12, 14, 16, 20, 24, 28, 32, 40, 48],

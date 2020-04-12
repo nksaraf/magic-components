@@ -1,0 +1,4 @@
+{
+  "name": "magic-components/babel",
+  "main": "./babel-plugin-magic.js"
+}

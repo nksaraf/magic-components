@@ -1,6 +1,7 @@
-function babelMagic(babel) {
+module.exports = function babelMagic(babel) {
   const { types: t } = babel;
   const importLocation = "magic-components";
+  // const importLocation = "src";
   const namespace = "magic";
   const addMagicImport = (path, that) => {
     if (!that.imported) {
@@ -24,6 +25,7 @@ function babelMagic(babel) {
   const isDOMElement = (path) => {
     return (
       t.isJSXIdentifier(path.node.name) &&
+      // elements.includes(path.node.name.name) &&
       isLower(path.node.name.name.charAt(0))
     );
   };
@@ -42,7 +44,7 @@ function babelMagic(babel) {
       JSXOpeningElement(path) {
         if (isDOMElement(path)) {
           path.node.name = namespacedElement(path);
-          // addMagicImport(path, this);
+          addMagicImport(path, this);
         }
       },
       JSXClosingElement(path) {
@@ -54,4 +56,4 @@ function babelMagic(babel) {
   };
 }
 
-Babel.registerPlugin("magic", babelMagic);
+// Babel.registerPlugin("magic", babelMagic);
