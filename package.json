@@ -1,6 +1,6 @@
 {
   "name": "magic-components",
-  "version": "0.0.1-beta.14",
+  "version": "0.0.1-beta.15",
   "description": "",
   "repository": "Nikhil Saraf/magic-components",
   "license": "MIT",
@@ -40,8 +40,8 @@
     "next": "^9.3.4",
     "preact": "^10.4.0",
     "preact-render-to-string": "^5.1.6",
-    "react": "preact-compat/react#1.x",
-    "react-dom": "preact-compat/react-dom#1.x",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "typescript": "3.8.3"
   },
   "peerDependencies": {
