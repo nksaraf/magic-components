@@ -1,6 +1,6 @@
 {
   "name": "magic-components",
-  "version": "0.0.1-beta.10",
+  "version": "0.0.1-beta.11",
   "description": "",
   "repository": "Nikhil Saraf/magic-components",
   "license": "MIT",
@@ -38,8 +38,10 @@
     "browser-sync": "2.26.7",
     "klap": "4.2.3",
     "next": "^9.3.4",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "preact": "^10.4.0",
+    "preact-render-to-string": "^5.1.6",
+    "react": "preact-compat/react#1.x",
+    "react-dom": "preact-compat/react-dom#1.x",
     "typescript": "3.8.3"
   },
   "peerDependencies": {
@@ -51,7 +53,8 @@
     "globals": {
       "framer-motion": "Motion",
       "@nksaraf/colors": "Colors",
-      "react": "React"
+      "react": "React",
+      "deepmerge": "deepmerge"
     }
   }
 }
