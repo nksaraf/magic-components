@@ -8,6 +8,11 @@ function fontStack(fonts) {
 }
 
 const sizes = [0, 4, 8, 16, 32, 64, 128, 256, 512];
+(sizes as any)["full"] = "100%";
+(sizes as any)["half"] = "50%";
+(sizes as any)["1/2"] = "50%";
+(sizes as any)["1/4"] = "25%";
+(sizes as any)["3/4"] = "75%";
 
 export const baseTheme = {
   breakpoints: ["544px", "768px", "1012px", "1280px"],

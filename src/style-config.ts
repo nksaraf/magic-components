@@ -350,22 +350,25 @@ export const grid = {
   placeItems: true,
 };
 
-function transformPercentageOrPx(value: any, scale: any) {
-  const defaultValue =
-    !(typeof value === "number") || value > 1 ? value : value * 100 + "%";
-  return get(scale, value, defaultValue);
-}
+// function transformPercentageOrPx(value: any, scale: any) {
+//   if (typeof value === "number" && value <= 1) {
+
+//   }
+//   const defaultValue =
+//     !(typeof value === "number") || value > 1 ? px(value, scale) : value * 100 + "%";
+//   return get(scale, value, defaultValue);
+// }
 
 export const layout = {
   width: {
     property: "width",
     scale: "sizes",
-    transform: transformPercentageOrPx,
+    transform: px,
   },
   w: {
     property: "width",
     scale: "sizes",
-    transform: transformPercentageOrPx,
+    transform: px,
   },
   height: {
     property: "height",
