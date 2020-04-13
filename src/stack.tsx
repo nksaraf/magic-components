@@ -29,8 +29,6 @@ const Stack = ({
   const styles: any = {
     display: inline ? "inline-flex" : "flex",
     // width: '100%', // causes weirdness in nested avatar. todo: debug
-    justifyContent: justify,
-    alignItems: align,
   };
 
   if (Array.isArray(direction)) {
@@ -57,26 +55,21 @@ const Stack = ({
 Stack.displayName = "Magic(stack)";
 (magic as any)["stack"] = Stack;
 
-(magic as any)["flex"] = createMagic("div")(
-  {
-    display: "flex",
-  },
-  "flex"
-);
-(magic as any)["row"] = createMagic("div")(
-  {
-    display: "flex",
-    flexDirection: "row",
-  },
-  "row"
-);
-(magic as any)["column"] = createMagic("div")(
-  {
-    display: "flex",
-    flexDirection: "column",
-  },
-  "column"
-);
+const Row = Stack.bind({});
+Row.displayName = "Magic(row)";
+(Row as any).defaultProps = {
+  direction: "horizontal",
+};
+
+(magic as any)["row"] = Row;
+
+const Column = Stack.bind({});
+Column.displayName = "Magic(column)";
+(Column as any).defaultProps = {
+  direction: "vertical",
+};
+(magic as any)["column"] = Column;
+
 (magic as any)["grid"] = createMagic("div")(
   {
     display: "grid",

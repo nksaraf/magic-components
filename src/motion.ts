@@ -53,7 +53,6 @@ export const motionParser = system(
       transform: animTransform,
       allowComplex: true,
     },
-
     style: true,
     transformTemplate: true,
     transformValues: true,
@@ -111,5 +110,6 @@ export const motionParser = system(
     static: true,
     inherit: true,
   },
-  "separate"
+  "separate",
+  false
 );

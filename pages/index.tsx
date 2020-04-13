@@ -28,6 +28,7 @@ export default () => {
       </row>
       <row bg="red.100">
         <div>hello world</div>
+        <div style={{ marginLeft: 100, width: "100%" }}>hello world</div>
         <div>hello other world</div>
       </row>
       <stack gap={4}>

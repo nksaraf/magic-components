@@ -299,8 +299,14 @@ export const typography = {
 export const flexbox = {
   alignItems: true,
   alignContent: true,
+  align: {
+    property: 'alignItems'
+  },
   justifyItems: true,
   justifyContent: true,
+  justify: {
+    property: 'justifyContent'
+  },
   flexWrap: true,
   flexDirection: true,
   flex: true,
