@@ -29,7 +29,7 @@ export const createMagic = (
     : component.displayName || component.name || "Component"
 ) => {
   const Magic = React.forwardRef(
-    ({ children, className, as: asProp, css, ...props }: any, ref) => {
+    ({ children, className, as: asProp, css, motion:  allowMotion = true, ...props }: any, ref) => {
       // Grab a shallow copy of the props
       // _ctx.p: is the props sent to the context
 
@@ -62,6 +62,7 @@ export const createMagic = (
         // handles all style props, except css prop
         let [stylePropsCss, remainingProps] = strictCssParser(nonMotionProps, theme);
         baseProps = remainingProps;
+        propsCss = stylePropsCss;
         // if css prop has anything
         if (css && Object.keys(css).length > 0) {
           // handle top level css declarations
@@ -88,12 +89,15 @@ export const createMagic = (
         }
       }
 
+      const baseComponent = asProp ? asProp : component;
+
+      const toRender = Object.keys(motionProps).length > 0 && allowMotion
+      ? typeof baseComponent === "string"
+        ? (motion as any)[baseComponent]
+        : motion.custom(baseComponent)
+      : baseComponent;
       return React.createElement(
-        asProp || Object.keys(motionProps).length > 0
-          ? typeof component === "string"
-            ? (motion as any)[component]
-            : motion.custom(component)
-          : component,
+        toRender,
         Object.assign({}, motionProps, baseProps, {
           ref,
           children,

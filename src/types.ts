@@ -130,36 +130,55 @@ declare global {
     [K in keyof CSS.Properties<number | string | 0>]: CSSMutliValue<K>;
   };
 
+  type Motion<T> = {
+    [K in Exclude<keyof MotionProps, keyof Other.HTMLAttributes<T>>]?:
+      | MotionProps[K]
+      | null;
+  };
+
+  type CSSProps = {
+    [K in keyof CSS.Properties<any>]?: CSSMutliValue<K>;
+  };
+
+  type HTMLStyleProps = {
+    [K in Exclude<StyleProps, keyof CSS.Properties<any>>]?:
+      | string
+      | number
+      | string[]
+      | number[];
+  };
+
+  // export type As = Other.ElementType<any>;
+  // export type PropsOf<T extends As> = Other.ComponentPropsWithRef<T>;
+  // export type PropsWithAs<P, T extends As> = P &
+  //   Omit<PropsOf<T>, "as" | keyof P> & {
+  //     as?: T;
+  //   };
+
+  // export interface MagicComponentProps<T>
+  //   extends CSSPropertiesWithMultiValues,
+  //     Motion<T>,
+  //     HTMLStyleProps {
+  //   css?: CSSProps & { [key in SimplePseudos | AdvancedPseudos]?: CSSProps };
+  //   as?: Other.ElementType<any> | string;
+  // }
+
+  // export type MagicComponent<T extends As, P> =
+  //   | ((
+  //       props: PropsOf<T> & P & MagicComponentProps & { as?: As }
+  //     ) => JSX.Element)
+  //   | (<TT extends As = T>(
+  //       props: PropsWithAs<PropsOf<T>, TT> & ChakraProps & P
+  //     ) => JSX.Element);
+
   namespace React {
-    //   type HTMLAttributesWithoutMotionProps<Attributes extends HTMLAttributes<Element>, Element extends HTMLElement> = {
-    //     [K in Exclude<keyof Attributes, keyof MotionProps>]?: Attributes[K];
-    // };
-
-    type Motion<T> = {
-      [K in Exclude<keyof MotionProps, keyof Other.HTMLAttributes<T>>]?:
-        | MotionProps[K]
-        | null;
-    };
-
-    type CSSProps = {
-      [K in keyof CSS.Properties<any>]?: CSSMutliValue<K>;
-    };
-
-    type HTMLStyleProps = {
-      [K in Exclude<StyleProps, keyof CSS.Properties<any>>]?:
-        | string
-        | number
-        | string[]
-        | number[];
-    };
-
-    // export declare type HTMLMotionProps<TagName extends keyof ReactHTML> = HTMLAttributesWithoutMotionProps<UnwrapFactoryAttributes<ReactHTML[TagName]>, UnwrapFactoryElement<ReactHTML[TagName]>> & MotionProps;
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
     interface HTMLAttributes<T>
       extends CSSPropertiesWithMultiValues,
         Motion<T>,
         HTMLStyleProps {
       css?: CSSProps & { [key in SimplePseudos | AdvancedPseudos]?: CSSProps };
+      as?: Other.ElementType<any> | string;
+      motion?: boolean;
     }
   }
 
