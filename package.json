@@ -1,6 +1,6 @@
 {
   "name": "magic-components",
-  "version": "0.0.2-beta.11",
+  "version": "0.0.2-beta.12",
   "description": "",
   "repository": "Nikhil Saraf/magic-components",
   "license": "MIT",
@@ -16,7 +16,7 @@
     "babel"
   ],
   "scripts": {
-    "build": "klap build -n Magic",
+    "build": "klap build -n Magic --no-minify",
     "tsdx:build": "npx tsdx build --entry src/index.tsx --tsconfig tsconfig.klap.json",
     "postbuild": "tsc -p tsconfig.klap.json",
     "dev": "next",
