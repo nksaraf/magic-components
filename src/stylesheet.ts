@@ -1,3 +1,5 @@
+// import { prefixProperty, prefixValue } from 'tiny-css-prefixer';
+import { prefix } from 'inline-style-prefixer'
 /**
  * Parses the object into css, scoped, blocks
  * @param {Object} obj
@@ -9,6 +11,20 @@ export interface Parse {
   p?: any
 }
 
+// export const prefix = (prop: string, value: string) => {
+//   debugger;
+//   const base = `${prop}: ${value}; `;
+//   value = prefixValue(prop, value);
+//   let css = `${prop}: ${value}; `;
+//   const flag = prefixProperty(prop);
+//   if (flag & 0b001) css += `-ms-${base}`;
+//   if (flag & 0b010) css += `-moz-${base}`;
+//   if (flag & 0b100) css += `-webkit-${base}`;
+//   return css;
+// };
+
+import resolveArrayValue from 'css-in-js-utils/lib/resolveArrayValue';
+
 export const parse: Parse = (obj, paren, wrapper) => {
   let outer = '';
   let blocks = '';
@@ -18,7 +34,7 @@ export const parse: Parse = (obj, paren, wrapper) => {
       const val = obj[key];
 
       // If this is a 'block'
-      if (typeof val == 'object') {
+      if (typeof val == 'object' && !Array.isArray(val)) {
           // Regular selector
           let next = paren + ' ' + key;
 
@@ -47,11 +63,13 @@ export const parse: Parse = (obj, paren, wrapper) => {
               outer = key + ' ' + val + ';';
           } else {
               // Push the line for this property
-              current += parse.p
-                  ? // We have a prefixer and we need to run this through that
-                    parse.p(key.replace(/[A-Z]/g, '-$&').toLowerCase(), val)
-                  : // Nope no prefixer just append it
-                    key.replace(/[A-Z]/g, '-$&').toLowerCase() + ':' + val + ';';
+              key = key.replace(/[A-Z]/g, '-$&').toLowerCase();
+              current += 
+              // parse.p
+                  // ? // We have a prefixer and we need to run this through that
+                    // parse.p(key.replace(/[A-Z]/g, '-$&').toLowerCase(), val)
+                  // : // Nope no prefixer just append it
+                   key  + ':' + (Array.isArray(val) ? val.join(';' + key + ':') : val) + ';';
           }
       }
   }
@@ -71,6 +89,7 @@ export const parse: Parse = (obj, paren, wrapper) => {
   return outer + blocks;
 };
 
+// parse.p = prefix;
 
 export const GOOBER_ID = '✨📃';
 export const GOOBER_PREFIX = '.✨';
@@ -156,7 +175,7 @@ export const hash = (compiled: object, sheet: any, global: boolean, append: bool
   // Parse the compiled
   const parsed =
       cache[className] ||
-      (cache[className] = parse(compiled, global ? '' : className));
+      (cache[className] = parse(prefix(compiled), global ? '' : className));
 
   // add or update
   update(parsed, sheet, append);

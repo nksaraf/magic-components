@@ -178,7 +178,7 @@ declare global {
         HTMLStyleProps {
       css?: CSSProps & { [key in SimplePseudos | AdvancedPseudos]?: CSSProps };
       as?: Other.ElementType<any> | string;
-      motion?: boolean;
+      noMotion?: boolean;
     }
   }
 

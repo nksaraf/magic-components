@@ -29,7 +29,7 @@ export const createMagic = (
     : component.displayName || component.name || "Component"
 ) => {
   const Magic = React.forwardRef(
-    ({ children, className, as: asProp, css, motion:  allowMotion = true, ...props }: any, ref) => {
+    ({ children, className, as: asProp, css, noMotion = false, ...props }: any, ref) => {
       // Grab a shallow copy of the props
       // _ctx.p: is the props sent to the context
 
@@ -91,7 +91,7 @@ export const createMagic = (
 
       const baseComponent = asProp ? asProp : component;
 
-      const toRender = Object.keys(motionProps).length > 0 && allowMotion
+      const toRender = Object.keys(motionProps).length > 0 && !noMotion
       ? typeof baseComponent === "string"
         ? (motion as any)[baseComponent]
         : motion.custom(baseComponent)

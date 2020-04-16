@@ -22,7 +22,7 @@ const Stack = ({
   justify,
   align,
   direction,
-  gap,
+  gap = 0,
   css,
   ...props
 }: any) => {

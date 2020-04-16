@@ -16,7 +16,7 @@
     "babel"
   ],
   "scripts": {
-    "build": "klap build -n Magic --no-minify",
+    "build": "klap build -n Magic",
     "tsdx:build": "npx tsdx build --entry src/index.tsx --tsconfig tsconfig.klap.json",
     "postbuild": "tsc -p tsconfig.klap.json",
     "dev": "next",
@@ -28,11 +28,14 @@
   "dependencies": {
     "@nksaraf/colors": "^0.0.2",
     "color": "^3.1.2",
+    "css-in-js-utils": "^3.0.4",
     "deepmerge": "^4.2.2",
     "framer-motion": "^2.0.0-beta.42",
+    "inline-style-prefixer": "^6.0.0",
     "tiny-css-prefixer": "^1.1.4"
   },
   "devDependencies": {
+    "@types/inline-style-prefixer": "^5.0.0",
     "@types/node": "^13.11.1",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
