@@ -1,16 +1,20 @@
 import { hash, sheet } from "./stylesheet";
 import { useTheme } from "./theme";
-import { strictCssParser } from "./magic";
+import { strictCssParser } from "./parser";
 import React from "react";
 import { StyleProps } from "./style-config";
 
 const globalCache: { [key: string]: any } = {};
 
 export const Global = ({
-  style,
+  style = {},
+  css = {},
   id,
 }: {
-  style: {
+  style?: {
+    [k: string]: StyleProps;
+  };
+  css?: {
     [k: string]: StyleProps;
   };
   id?: string;
@@ -23,11 +27,15 @@ export const Global = ({
 
     const styles: any = {};
     for (var item in style) {
-      const [css, _] = strictCssParser(style[item], theme);
-      styles[item] = css;
+      const [styleCss, _] = strictCssParser(style[item], theme);
+      styles[item] = styleCss;
+    }
+    for (var item in css) {
+      const [cssCss, _] = strictCssParser(style[item], theme);
+      styles[item] = cssCss;
     }
     if (id) {
-      globalCache[id] = style;
+      globalCache[id] = styles;
     }
     return hash(styles, sheet, true, false);
   }, [id]);

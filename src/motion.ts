@@ -1,7 +1,5 @@
 import { system } from "./system";
-import { allConfig } from "./style-config";
-
-export const deepParser = system(allConfig, "merge", false);
+import { linientCssParser } from "./parser";
 
 const animTransform = (
   value: { [x: string]: any },
@@ -12,7 +10,7 @@ const animTransform = (
   if (typeof value !== "object" || Array.isArray(animTransform)) {
     return value;
   }
-  return deepParser(value, theme);
+  return linientCssParser(value, theme);
 };
 
 export const motionParser = system(
@@ -35,7 +33,7 @@ export const motionParser = system(
           if (typeof value[key] == "function") {
             v[key] = value[key];
           } else {
-            v[key] = deepParser(value[key], theme);
+            v[key] = linientCssParser(value[key], theme);
           }
         }
         return v;

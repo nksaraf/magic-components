@@ -161,7 +161,7 @@ declare global {
     interface HTMLAttributes<T>
       extends StyleProps,
         MotionProperties<T> {
-      css?: StyleProps & { [key in SimplePseudos | AdvancedPseudos | string]?: StyleProps };
+      css?: StyleProps & { [key: string]: StyleProps };
       as?: ReactTypes.ElementType<any> | string;
       noMotion?: boolean;
       props?: any

@@ -93,7 +93,6 @@ export const elements = [
   "source",
   "span",
   "strong",
-  "style",
   "sub",
   "summary",
   "sup",

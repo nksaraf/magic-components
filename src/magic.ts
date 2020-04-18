@@ -4,11 +4,9 @@ import { useTheme } from "./theme";
 import { elements } from "./dom";
 import { hash, GOOBER_REGEX, sheet } from "./stylesheet";
 import "./types";
-import { allConfig } from "./style-config";
-import { system } from "./system";
-import { motionParser, deepParser as linientCssParser } from "./motion";
-
-export const strictCssParser = system(allConfig, "separate");
+import { strictCssParser, linientCssParser} from './parser';
+import { motionParser } from "./motion";
+import { Global } from "./global";
 
 export const createMagic = (
   component:
@@ -115,5 +113,15 @@ export const magic = createMagic;
 elements.forEach((el) => {
   (magic as any)[el] = createMagic(el)();
 });
+
+const Style = ({ jsx = false, ...props}) => {
+  if (jsx) {
+    return React.createElement('style', { jsx, ...props });
+  }
+
+  return React.createElement(Global, props);
+}
+Style.displayName = "Magic(style)";
+(magic as any)['style'] = Style;
 
 // export const magic = baseMagic as unknown as typeof createMagic & { }
