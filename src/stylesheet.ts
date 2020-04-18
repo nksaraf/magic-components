@@ -6,24 +6,12 @@ import { prefix } from 'inline-style-prefixer'
  * @param {String} paren
  * @param {String} wrapper
  */
+
+
 export interface Parse {
   (obj: { [key: string]: any }, paren: string, wrapper?: string): string
   p?: any
 }
-
-// export const prefix = (prop: string, value: string) => {
-//   debugger;
-//   const base = `${prop}: ${value}; `;
-//   value = prefixValue(prop, value);
-//   let css = `${prop}: ${value}; `;
-//   const flag = prefixProperty(prop);
-//   if (flag & 0b001) css += `-ms-${base}`;
-//   if (flag & 0b010) css += `-moz-${base}`;
-//   if (flag & 0b100) css += `-webkit-${base}`;
-//   return css;
-// };
-
-import resolveArrayValue from 'css-in-js-utils/lib/resolveArrayValue';
 
 export const parse: Parse = (obj, paren, wrapper) => {
   let outer = '';
@@ -88,8 +76,6 @@ export const parse: Parse = (obj, paren, wrapper) => {
 
   return outer + blocks;
 };
-
-// parse.p = prefix;
 
 export const GOOBER_ID = '✨📃';
 export const GOOBER_PREFIX = '.✨';

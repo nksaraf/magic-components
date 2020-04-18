@@ -1,5 +1,6 @@
-import { CSSReset, Global } from "../src";
-
+import Head from "next/head";
+import React from "react";
+import "../src";
 // glob({
 //   body: {
 //     margin: "1px",
@@ -20,12 +21,15 @@ export default () => {
   const [state, setState] = React.useState(false);
   return (
     <>
-      {/* <CSSReset /> */}
-      {/* <Global style={{ body: { margin: 1 } }} /> */}
+      <Head>
+        <title>World</title>
+        <link href="hello" />
+      </Head>
       <row animate={{ x: 100 }}>
         <div>hello world</div>
         <div>hello other world</div>
       </row>
+      <style css={{ body: { backgroundColor: "red.300" } }} id={"1"} />
       <row bg="red.100" props={{ "aria-label": "a" }}>
         <div as="h1">hello world</div>
         <div style={{ marginLeft: 100, width: "100%" }}>hello world</div>
@@ -35,10 +39,10 @@ export default () => {
         <p
           id="hello"
           css={{
-            color: ["red.100", "blue.100", "green.100"],
             "&:hover": {
               color: "green.100",
             },
+            color: ["red.100", "blue.100", "green.100"],
           }}
         >
           Hello World Ne Iadsadw

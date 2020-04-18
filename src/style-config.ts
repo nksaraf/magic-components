@@ -707,5 +707,8 @@ export type ResponsiveStyleAliases = {
   [K in Exclude<keyof StylePropConfig, keyof CSS.Properties>]?: ResponsiveValue<string | number | 0>;
 }
 export type StyleProps = ResponsiveStyleProps & ResponsiveStyleAliases;
+
+export type CSSProp<K> = K extends keyof StyleProps ? StyleProps[K] : StyleProps;
+
   // : (StyleAliasConfig[K] extends { "property": string } ? ResponsiveCSSValue<StylePropConfig[K]["property"]> : ResponsiveValue<string | number | 0> }
 // export type StyleProps = CSS.Properties & StyleAliasProps;

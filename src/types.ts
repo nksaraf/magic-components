@@ -1,6 +1,11 @@
 import { MotionProps } from "framer-motion";
 import * as ReactTypes from "react";
-import { ResponsiveCSSValue, StyleProps, ResponsiveValue } from "./style-config";
+import {
+  ResponsiveCSSValue,
+  StyleProps,
+  ResponsiveValue,
+  CSSProp,
+} from "./style-config";
 
 export type AdvancedPseudos =
   | "&:-moz-any()"
@@ -119,8 +124,6 @@ export type SimplePseudos =
   | "&:valid"
   | "&:visited";
 
-
-
 export type MotionProperties<T> = {
   [K in Exclude<keyof MotionProps, keyof ReactTypes.HTMLAttributes<T>>]?:
     | MotionProps[K]
@@ -158,13 +161,14 @@ declare global {
   //     ) => JSX.Element);
 
   namespace React {
-    interface HTMLAttributes<T>
-      extends StyleProps,
-        MotionProperties<T> {
-      css?: StyleProps & { [key: string]: StyleProps };
+    interface HTMLAttributes<T> extends StyleProps, MotionProperties<T> {
+      css?: {
+        [K in string]: CSSProp<K>;
+      };
       as?: ReactTypes.ElementType<any> | string;
       noMotion?: boolean;
-      props?: any
+      noMagic?: boolean;
+      props?: any;
     }
   }
 
@@ -180,7 +184,9 @@ declare global {
       justify?: ResponsiveCSSValue<"justifyContent">;
       align?: ResponsiveCSSValue<"alignItems">;
       direction?: "horizontal" | "vertical";
-      gap?: ResponsiveCSSValue<"marginRight"> | ResponsiveValue<string | number>;
+      gap?:
+        | ResponsiveCSSValue<"marginRight">
+        | ResponsiveValue<string | number>;
     };
     flex?: ReactTypes.DetailedHTMLProps<
       ReactTypes.HTMLAttributes<HTMLDivElement>,

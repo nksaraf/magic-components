@@ -31,7 +31,7 @@ export const Global = ({
       styles[item] = styleCss;
     }
     for (var item in css) {
-      const [cssCss, _] = strictCssParser(style[item], theme);
+      const [cssCss, _] = strictCssParser(css[item], theme);
       styles[item] = cssCss;
     }
     if (id) {
@@ -43,11 +43,11 @@ export const Global = ({
   return <></>;
 };
 
-export function important(s: string | object) {
+export function important<T>(s: T): T {
   if (typeof s === "string") {
-    return `${s} !important`;
+    return (`${s} !important` as unknown) as T;
   } else {
-    Object.fromEntries(
+    return Object.fromEntries(
       Object.entries(s).map(([key, value]) => [key, important(value)])
     );
   }

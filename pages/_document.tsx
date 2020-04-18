@@ -4,27 +4,21 @@ import Document, {
   NextScript,
   DocumentContext,
 } from "next/document";
-import { extractCss, GOOBER_ID } from "magic-components";
+import { extractMagicStyles } from "magic-components";
 
-export default class MyDocument extends Document<{ css: string }> {
+export default class MyDocument extends Document<{ style: any }> {
   static async getInitialProps(props: DocumentContext) {
     const documentProps = await Document.getInitialProps(props);
     const { renderPage } = props;
     const page = renderPage();
-    const styles = extractCss();
-
-    return { ...documentProps, ...page, css: styles };
+    const style = extractMagicStyles();
+    return { ...documentProps, ...page, style };
   }
 
   render() {
     return (
       <html>
-        <Head>
-          <style
-            id={GOOBER_ID}
-            dangerouslySetInnerHTML={{ __html: this.props.css }}
-          />
-        </Head>
+        <Head>{this.props.style}</Head>
         <body>
           <Main />
           <NextScript />
