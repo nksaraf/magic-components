@@ -29,7 +29,7 @@ export const createMagic = (
     : component.displayName || component.name || "Component"
 ) => {
   const Magic = React.forwardRef(
-    ({ children, className, as: asProp, css, noMotion = false, ...props }: any, ref) => {
+    ({ children, className, as: asProp, css, noMotion = false, props: normalProps, ...props }: any, ref) => {
       // Grab a shallow copy of the props
       // _ctx.p: is the props sent to the context
 
@@ -98,7 +98,7 @@ export const createMagic = (
       : baseComponent;
       return React.createElement(
         toRender,
-        Object.assign({}, motionProps, baseProps, {
+        Object.assign({}, motionProps, baseProps, normalProps, {
           ref,
           children,
           className: computedClassName,

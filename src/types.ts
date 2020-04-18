@@ -1,7 +1,6 @@
-import * as CSS from "csstype";
 import { MotionProps } from "framer-motion";
-import * as Other from "react";
-import { StyleProps } from "./style-config";
+import * as ReactTypes from "react";
+import { ResponsiveCSSValue, StyleProps, ResponsiveValue } from "./style-config";
 
 export type AdvancedPseudos =
   | "&:-moz-any()"
@@ -120,34 +119,21 @@ export type SimplePseudos =
   | "&:valid"
   | "&:visited";
 
+
+
+export type MotionProperties<T> = {
+  [K in Exclude<keyof MotionProps, keyof ReactTypes.HTMLAttributes<T>>]?:
+    | MotionProps[K]
+    | null;
+};
+
+// export type StyleAliasProps = {
+//   [K in Exclude<StylePropNames, keyof CSS.Properties<any>>]?: ResponsiveValue<
+//     string | number | 0
+//   >;
+// };
+
 declare global {
-  type ResponsiveValue<T> = T | T[];
-
-  type CSSMutliValue<K extends keyof CSS.Properties> = ResponsiveValue<
-    CSS.Properties<number | string | 0>[K]
-  >;
-  type CSSPropertiesWithMultiValues = {
-    [K in keyof CSS.Properties<number | string | 0>]: CSSMutliValue<K>;
-  };
-
-  type Motion<T> = {
-    [K in Exclude<keyof MotionProps, keyof Other.HTMLAttributes<T>>]?:
-      | MotionProps[K]
-      | null;
-  };
-
-  type CSSProps = {
-    [K in keyof CSS.Properties<any>]?: CSSMutliValue<K>;
-  };
-
-  type HTMLStyleProps = {
-    [K in Exclude<StyleProps, keyof CSS.Properties<any>>]?:
-      | string
-      | number
-      | string[]
-      | number[];
-  };
-
   // export type As = Other.ElementType<any>;
   // export type PropsOf<T extends As> = Other.ComponentPropsWithRef<T>;
   // export type PropsWithAs<P, T extends As> = P &
@@ -173,47 +159,47 @@ declare global {
 
   namespace React {
     interface HTMLAttributes<T>
-      extends CSSPropertiesWithMultiValues,
-        Motion<T>,
-        HTMLStyleProps {
-      css?: CSSProps & { [key in SimplePseudos | AdvancedPseudos]?: CSSProps };
-      as?: Other.ElementType<any> | string;
+      extends StyleProps,
+        MotionProperties<T> {
+      css?: StyleProps & { [key in SimplePseudos | AdvancedPseudos | string]?: StyleProps };
+      as?: ReactTypes.ElementType<any> | string;
       noMotion?: boolean;
+      props?: any
     }
   }
 
-  interface MoreJSX {
+  interface MagicElements {
     stack?: Omit<
-      Other.DetailedHTMLProps<
-        Other.HTMLAttributes<HTMLDivElement>,
+      ReactTypes.DetailedHTMLProps<
+        ReactTypes.HTMLAttributes<HTMLDivElement>,
         HTMLDivElement
       >,
       "gap"
     > & {
       inline?: boolean;
-      justify?: CSSMutliValue<"justifyContent">;
-      align?: CSSMutliValue<"alignItems">;
+      justify?: ResponsiveCSSValue<"justifyContent">;
+      align?: ResponsiveCSSValue<"alignItems">;
       direction?: "horizontal" | "vertical";
-      gap?: CSSMutliValue<"marginRight"> | ResponsiveValue<number>;
+      gap?: ResponsiveCSSValue<"marginRight"> | ResponsiveValue<string | number>;
     };
-    flex?: Other.DetailedHTMLProps<
-      Other.HTMLAttributes<HTMLDivElement>,
+    flex?: ReactTypes.DetailedHTMLProps<
+      ReactTypes.HTMLAttributes<HTMLDivElement>,
       HTMLDivElement
     >;
-    column?: Other.DetailedHTMLProps<
-      Other.HTMLAttributes<HTMLDivElement>,
+    column?: ReactTypes.DetailedHTMLProps<
+      ReactTypes.HTMLAttributes<HTMLDivElement>,
       HTMLDivElement
     >;
-    row?: Other.DetailedHTMLProps<
-      Other.HTMLAttributes<HTMLDivElement>,
+    row?: ReactTypes.DetailedHTMLProps<
+      ReactTypes.HTMLAttributes<HTMLDivElement>,
       HTMLDivElement
     >;
-    grid?: Other.DetailedHTMLProps<
-      Other.HTMLAttributes<HTMLDivElement>,
+    grid?: ReactTypes.DetailedHTMLProps<
+      ReactTypes.HTMLAttributes<HTMLDivElement>,
       HTMLDivElement
     >;
   }
   namespace JSX {
-    interface IntrinsicElements extends MoreJSX {}
+    interface IntrinsicElements extends MagicElements {}
   }
 }

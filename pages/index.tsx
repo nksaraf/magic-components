@@ -26,7 +26,7 @@ export default () => {
         <div>hello world</div>
         <div>hello other world</div>
       </row>
-      <row bg="red.100">
+      <row bg="red.100" props={{ "aria-label": "a" }}>
         <div as="h1">hello world</div>
         <div style={{ marginLeft: 100, width: "100%" }}>hello world</div>
         <div>hello other world</div>
