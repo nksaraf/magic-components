@@ -1,6 +1,6 @@
 {
   "name": "magic-components",
-  "version": "0.0.2-beta.21",
+  "version": "0.0.2-beta.22",
   "description": "",
   "repository": "Nikhil Saraf/magic-components",
   "license": "MIT",
@@ -28,13 +28,12 @@
   "dependencies": {
     "@nksaraf/colors": "^0.0.2",
     "color": "^3.1.2",
-    "css-in-js-utils": "^3.0.4",
     "deepmerge": "^4.2.2",
-    "framer-motion": "^2.0.0-beta.42",
-    "inline-style-prefixer": "^6.0.0",
-    "tiny-css-prefixer": "^1.1.4"
+    "framer-motion": "^2.0.0-beta.52",
+    "inline-style-prefixer": "^6.0.0"
   },
   "devDependencies": {
+    "@types/color": "^3.0.1",
     "@types/inline-style-prefixer": "^5.0.0",
     "@types/node": "^13.11.1",
     "@types/react": "^16.9.34",
