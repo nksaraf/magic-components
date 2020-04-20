@@ -1,5 +1,8 @@
 import React from "react";
 import { baseTheme } from "./base-theme";
+import { get } from "./system";
+import Color from "color";
+
 export const ThemeContext = React.createContext<any>(baseTheme);
 export const ThemeProvider = ({
   theme = {},
@@ -11,6 +14,14 @@ export const ThemeProvider = ({
     </ThemeContext.Provider>
   );
 };
+
 export const useTheme = () => {
-  return React.useContext(ThemeContext) || {};
+  const base = React.useContext(ThemeContext) || {};
+  const theme = Object.assign(base as { [key: string]: any }, {
+    get: (...keys: string[]) => get(base, keys.join("."), ""),
+    color: (val: string) => get(base, `colors.${val}`, val),
+    size: (val: string) => get(base, `sizes.${val}`, val),
+    Color: (val: string) => Color(get(base, `colors.${val}`, val)),
+  });
+  return theme;
 };

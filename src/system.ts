@@ -50,7 +50,7 @@ export const createParser = (config: { [x: string]: any }, remaining = 'ignore',
   const parse = (props: {
     [x: string]: any;
   }, 
-  theme: { disableStyledSystemCache: any }
+  theme: any
   ) => {
     let styles: any = {};
     let others : any= {};
