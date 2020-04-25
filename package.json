@@ -26,7 +26,7 @@
   },
   "prettier": {},
   "dependencies": {
-    "@nksaraf/colors": "^0.0.2",
+    "@nksaraf/colors": "^0.0.3",
     "color": "^3.1.2",
     "deepmerge": "^4.2.2",
     "framer-motion": "^2.0.0-beta.52",
