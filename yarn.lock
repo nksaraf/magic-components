@@ -953,10 +953,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/memoize/-/memoize-0.7.4.tgz#19bf0f5af19149111c40d98bb0cf82119f5d9eeb"
   integrity sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==
 
-"@nksaraf/colors@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@nksaraf/colors/-/colors-0.0.2.tgz#383dad2432ef52f05c4b23cfc40c3a5aa6a2f310"
-  integrity sha512-ZUa7HrKWxZ+NJo2u8L+tkxf9S+kJHiuFDi/rYA7Zhla9feW//A5c69037tmhAPo3SQ7jUyWCGIJfDaj7lZcdZQ==
+"@nksaraf/colors@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@nksaraf/colors/-/colors-0.0.3.tgz#c2275cbe34f1f4788f33660c6de18bd2c8339194"
+  integrity sha512-GEemxgx2CTRkSQ/+DoDPZzHCtmpKoy2IbpROTTtETm7uAdDXXUp2m6kAEqIZFnAV9Pv75TA62mK8fjbQtmlikw==
 
 "@popmotion/easing@^1.0.1", "@popmotion/easing@^1.0.2":
   version "1.0.2"
