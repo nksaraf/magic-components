@@ -953,10 +953,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/memoize/-/memoize-0.7.4.tgz#19bf0f5af19149111c40d98bb0cf82119f5d9eeb"
   integrity sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==
 
-"@nksaraf/colors@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@nksaraf/colors/-/colors-0.0.2.tgz#383dad2432ef52f05c4b23cfc40c3a5aa6a2f310"
-  integrity sha512-ZUa7HrKWxZ+NJo2u8L+tkxf9S+kJHiuFDi/rYA7Zhla9feW//A5c69037tmhAPo3SQ7jUyWCGIJfDaj7lZcdZQ==
+"@nksaraf/colors@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@nksaraf/colors/-/colors-0.0.3.tgz#c2275cbe34f1f4788f33660c6de18bd2c8339194"
+  integrity sha512-GEemxgx2CTRkSQ/+DoDPZzHCtmpKoy2IbpROTTtETm7uAdDXXUp2m6kAEqIZFnAV9Pv75TA62mK8fjbQtmlikw==
 
 "@popmotion/easing@^1.0.1", "@popmotion/easing@^1.0.2":
   version "1.0.2"
@@ -998,10 +998,10 @@
   resolved "https://registry.yarnpkg.com/@types/inline-style-prefixer/-/inline-style-prefixer-5.0.0.tgz#8bba0d4735f61bfa2d1a023a23b6a58a63b1166e"
   integrity sha512-V2YukRG3WNduBSYnY1IY8Gzx25p66guvFqFhTNN2tQ+L3Be1PoV5IcrftMpxj6zSfMXbw0Jgyv6Etomz+OCcRQ==
 
-"@types/node@^13.11.1":
-  version "13.13.1"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-13.13.1.tgz#1ba94c5a177a1692518bfc7b41aec0aa1a14354e"
-  integrity sha512-uysqysLJ+As9jqI5yqjwP3QJrhOcUwBjHUlUxPxjbplwKoILvXVsmYWEhfmAQlrPfbRZmhJB007o4L9sKqtHqQ==
+"@types/node@^13.13.2":
+  version "13.13.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-13.13.2.tgz#160d82623610db590a64e8ca81784e11117e5a54"
+  integrity sha512-LB2R1Oyhpg8gu4SON/mfforE525+Hi/M1ineICEDftqNVTyFg1aRIeGuTvXAoWHc4nbrFncWtJgMmoyRvuGh7A==
 
 "@types/prop-types@*":
   version "15.7.3"
@@ -2955,10 +2955,10 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
-framer-motion@^2.0.0-beta.52:
-  version "2.0.0-beta.52"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-2.0.0-beta.52.tgz#f7a6512f6205accb46cf94459aa7b36464b72193"
-  integrity sha512-6bHcrHkm2OiWYYF3EXre3xPl6/Z8RS6tqD6tW3GVDJK/JBG3XMjXNnXA9wN4k/6phDRfjpcooPUMtm2yztrmmA==
+framer-motion@^2.0.0-beta.55:
+  version "2.0.0-beta.55"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-2.0.0-beta.55.tgz#5286a534bb0f5a698ab1a510c6e84086211e8a8d"
+  integrity sha512-YoMHEvXInP8MarYxT72fi5umISA21YCSxPN4e+9mcdYueTB0fhVxux/nuS+cw5mnLzQsjEvTOE/hoRmoGlXMIQ==
   dependencies:
     "@popmotion/easing" "^1.0.2"
     "@popmotion/popcorn" "^0.4.2"
