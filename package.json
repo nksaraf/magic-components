@@ -29,7 +29,7 @@
     "@nksaraf/colors": "^0.0.3",
     "color": "^3.1.2",
     "deepmerge": "^4.2.2",
-    "framer-motion": "^2.0.0-beta.55",
+    "framer-motion": "^2.0.0-beta.57",
     "inline-style-prefixer": "^6.0.0"
   },
   "devDependencies": {
