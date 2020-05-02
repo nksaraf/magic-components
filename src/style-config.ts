@@ -300,12 +300,12 @@ export const flexbox = {
   alignItems: true,
   alignContent: true,
   align: {
-    property: 'alignItems'
+    property: "alignItems",
   },
   justifyItems: true,
   justifyContent: true,
   justify: {
-    property: 'justifyContent'
+    property: "justifyContent",
   },
   flexWrap: true,
   flexDirection: true,
@@ -686,29 +686,40 @@ export const allConfig = {
   ...space,
 };
 
-export type ResponsiveValue<T> = T | T[];
+declare global {
+  namespace Magic {
+    export type ResponsiveValue<T> = T | T[];
 
-export type ResponsiveCSSValue<
-  K extends keyof CSS.Properties
-> = ResponsiveValue<CSS.Properties<number | string | 0>[K]>;
+    export type ResponsiveCSSValue<
+      K extends keyof CSS.Properties
+    > = ResponsiveValue<CSS.Properties<number | string | 0>[K]>;
 
-export type ResponsiveCSSProperties = {
-  [K in keyof CSS.Properties<number | string | 0>]: ResponsiveCSSValue<K>;
-};
+    export type ResponsiveCSSProperties = {
+      [K in keyof CSS.Properties<number | string | 0>]: ResponsiveCSSValue<K>;
+    };
 
-export type StylePropConfig = typeof allConfig;
-export type StyleAliasConfig = Omit<StylePropConfig, keyof CSS.Properties<any>>;
-export type StyleAliases = keyof StyleAliasConfig;
-export type StylePropNames = (keyof StylePropConfig) | (keyof CSS.Properties);
-export type ResponsiveStyleProps = {
-  [K in keyof CSS.Properties]?: ResponsiveCSSValue<K> | ResponsiveValue<string | number | 0>
+    export type StylePropConfig = typeof allConfig;
+    export type StyleAliasConfig = Omit<
+      StylePropConfig,
+      keyof CSS.Properties<any>
+    >;
+    export type StyleAliases = keyof StyleAliasConfig;
+    export type StylePropNames = keyof StylePropConfig | keyof CSS.Properties;
+    export type ResponsiveStyleProps = {
+      [K in keyof CSS.Properties]?:
+        | ResponsiveCSSValue<K>
+        | ResponsiveValue<string | number | 0>;
+    };
+    export type ResponsiveStyleAliases = {
+      [K in Exclude<
+        keyof StylePropConfig,
+        keyof CSS.Properties
+      >]?: ResponsiveValue<string | number | 0>;
+    };
+    export type StyleProps = ResponsiveStyleProps & ResponsiveStyleAliases;
+
+    export type CSSObject<K> = K extends keyof StyleProps
+      ? StyleProps[K]
+      : StyleProps;
+  }
 }
-export type ResponsiveStyleAliases = {
-  [K in Exclude<keyof StylePropConfig, keyof CSS.Properties>]?: ResponsiveValue<string | number | 0>;
-}
-export type StyleProps = ResponsiveStyleProps & ResponsiveStyleAliases;
-
-export type CSSProp<K> = K extends keyof StyleProps ? StyleProps[K] : StyleProps;
-
-  // : (StyleAliasConfig[K] extends { "property": string } ? ResponsiveCSSValue<StylePropConfig[K]["property"]> : ResponsiveValue<string | number | 0> }
-// export type StyleProps = CSS.Properties & StyleAliasProps;

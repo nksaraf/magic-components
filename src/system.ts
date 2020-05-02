@@ -28,7 +28,9 @@ const sort = (obj: { [x: string]: any }) => {
 const defaults = {
   breakpoints: [40, 52, 64].map((n) => n + "em"),
 };
+
 const createMediaQuery = (n: any) => `@media screen and (min-width: ${n})`;
+
 const getValue = (n: any, scale: any) => get(scale, n, n);
 
 export const get = (
@@ -45,23 +47,28 @@ export const get = (
   return obj === undef ? def : obj;
 };
 
-export const createParser = (config: { [x: string]: any }, remaining = 'ignore', breakpoint = true) => {
+export const createParser = (
+  config: { [x: string]: any },
+  remaining = "ignore",
+  breakpoint = true
+) => {
   const cache: any = {};
-  const parse = (props: {
-    [x: string]: any;
-  }, 
-  theme: any
+  const parse = (
+    props: {
+      [x: string]: any;
+    },
+    theme: any
   ) => {
     let styles: any = {};
-    let others : any= {};
+    let others: any = {};
     let shouldSort = false;
     const isCacheDisabled = theme && theme.disableStyledSystemCache;
 
     for (const key in props) {
       if (!config[key]) {
-        if (remaining === 'separate') {
+        if (remaining === "separate") {
           others[key] = props[key];
-        } else if (remaining === 'merge') {
+        } else if (remaining === "merge") {
           styles[key] = props[key];
         }
         continue;
@@ -72,7 +79,7 @@ export const createParser = (config: { [x: string]: any }, remaining = 'ignore',
 
       if (typeof raw === "object") {
         if (!breakpoint && Array.isArray(raw)) {
-          styles[key] = raw.map(r => sx(r, scale, props, theme)[key]);
+          styles[key] = raw.map((r) => sx(r, scale, props, theme)[key]);
           continue;
         }
 
@@ -98,7 +105,14 @@ export const createParser = (config: { [x: string]: any }, remaining = 'ignore',
         if (raw !== null) {
           styles = merge(
             styles,
-            parseResponsiveObject(cache.breakpoints, sx, scale, raw, props, theme)
+            parseResponsiveObject(
+              cache.breakpoints,
+              sx,
+              scale,
+              raw,
+              props,
+              theme
+            )
           );
           shouldSort = true;
         }
@@ -113,7 +127,7 @@ export const createParser = (config: { [x: string]: any }, remaining = 'ignore',
       styles = sort(styles);
     }
 
-    if (remaining === 'separate') {
+    if (remaining === "separate") {
       return [styles, others];
     }
 
@@ -165,7 +179,6 @@ const parseResponsiveObject = (
   raw: { [x: string]: any },
   _props: any,
   theme: any
-
 ) => {
   let styles: any = {};
   for (let key in raw) {
@@ -190,14 +203,14 @@ export const createStyleFunction = ({
   scale,
   transform = getValue,
   fallbackScale,
-  allowComplex= false
+  allowComplex = false,
 }: any) => {
   properties = properties || [property];
   const sx = (value: any, scale: any, _props: any, theme: any) => {
     const result: any = {};
     let n = transform(value, scale, _props, theme);
     if (n === null) return;
-    if (!allowComplex && typeof n === 'object') {
+    if (!allowComplex && typeof n === "object") {
       n = value;
     }
     properties.forEach((prop: string | number) => {
@@ -212,10 +225,14 @@ export const createStyleFunction = ({
 };
 
 // new v5 API
-export const system = (args: any = {}, remaining = 'ignore', breakpointArray = true) => {
+export const system = (
+  propConfig: any = {},
+  remaining = "ignore",
+  breakpointArray = true
+) => {
   const config: any = {};
-  Object.keys(args).forEach((key) => {
-    const conf = args[key];
+  Object.keys(propConfig).forEach((key) => {
+    const conf = propConfig[key];
     if (conf === true) {
       // shortcut definition
       config[key] = createStyleFunction({
@@ -242,6 +259,5 @@ export const compose = (...parsers: any[]) => {
     Object.assign(config, parser.config);
   });
   const parser = createParser(config);
-
   return parser;
 };

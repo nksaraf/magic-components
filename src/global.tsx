@@ -1,24 +1,30 @@
-import { hash, sheet } from "./stylesheet";
+import { addCSS, sheet } from "./stylesheet";
 import { useTheme } from "./theme";
 import { strictCssParser } from "./parser";
 import React from "react";
-import { StyleProps } from "./style-config";
+import { magic } from "./magic";
 
 const globalCache: { [key: string]: any } = {};
 
-export const Global = ({
-  style = {},
-  css = {},
-  id,
-}: {
+declare global {
+  namespace Magic {
+    interface MagicComponents {
+      style: React.ComponentType<StyleTagProps>;
+    }
+  }
+}
+
+export interface GlobalStyleProps {
   style?: {
-    [k: string]: StyleProps;
+    [k: string]: Magic.StyleProps;
   };
   css?: {
-    [k: string]: StyleProps;
+    [k: string]: Magic.StyleProps;
   };
   id?: string;
-}) => {
+}
+
+export const Global = ({ style = {}, css = {}, id }: GlobalStyleProps) => {
   const theme = useTheme();
   React.useMemo(() => {
     if (id && globalCache[id]) {
@@ -37,11 +43,38 @@ export const Global = ({
     if (id) {
       globalCache[id] = styles;
     }
-    return hash(styles, sheet, true, false);
+    return addCSS(styles, sheet, true, false);
   }, [id]);
 
   return <></>;
 };
+
+interface StyleTagProps extends GlobalStyleProps, Magic.MagicUtilityProps {
+  jsx?: boolean;
+}
+
+export const styleElements = ["style"];
+
+const Style = ({
+  jsx = false,
+  noMagic = false,
+  muggle = false,
+  ...props
+}: StyleTagProps) => {
+  // for trying to be compliant with styled-jsx but its not working
+  if (jsx) {
+    return React.createElement("style", { jsx, ...props });
+  }
+
+  if (noMagic || muggle) {
+    return React.createElement("style", { ...props });
+  }
+
+  return React.createElement(Global, props);
+};
+
+Style.displayName = "Magic(style)";
+magic.style = Style;
 
 export function important<T>(s: T): T {
   if (typeof s === "string") {

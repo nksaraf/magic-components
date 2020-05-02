@@ -1,78 +1,71 @@
-import React from "react";
-import { magic, createMagic } from "./magic";
+import { magic } from "./magic";
 
-import deepmerge from "deepmerge";
+// import deepmerge from "deepmerge";
 
-const mergeTwo = (a: any = {}, b: any = {}) => {
-  // remove undefined values before merge
-  Object.keys(a).forEach((key) => a[key] == undefined && delete a[key]);
-  Object.keys(b).forEach((key) => b[key] == undefined && delete b[key]);
+// const mergeTwo = (a: any = {}, b: any = {}) => {
+//   // remove undefined values before merge
+//   Object.keys(a).forEach((key) => a[key] == undefined && delete a[key]);
+//   Object.keys(b).forEach((key) => b[key] == undefined && delete b[key]);
 
-  return deepmerge(a, b);
-};
+//   return deepmerge(a, b);
+// };
 
-const merge = (...objs: any[]) => {
-  return objs.reduce(function (merged, currentValue) {
-    return mergeTwo(merged, currentValue);
-  }, {});
-};
+// export const merge = (...objs: any[]) => {
+//   return objs.reduce(function (merged, currentValue) {
+//     return mergeTwo(merged, currentValue);
+//   }, {});
+// };
 
-const Stack = ({
-  inline,
-  justify,
-  align,
-  direction,
-  gap = 0,
-  css,
-  ...props
-}: any) => {
-  const styles: any = {
-    display: inline ? "inline-flex" : "flex",
-    // width: '100%', // causes weirdness in nested avatar. todo: debug
-  };
-
-  if (Array.isArray(direction)) {
-    styles.flexDirection = direction.map((d) =>
-      d === "vertical" ? "column" : "row"
-    );
-    styles["> *:not(:last-child)"] = direction.map((d) => ({
-      [d === "vertical" ? "marginBottom" : "marginRight"]: gap,
-      [d === "vertical" ? "marginRight" : "marginBottom"]: 0,
-    }));
-  } else {
-    styles.flexDirection = direction === "vertical" ? "column" : "row";
-    styles["> *:not(:last-child)"] = {
-      [direction === "vertical" ? "marginBottom" : "marginRight"]: gap,
-    };
+declare global {
+  namespace Magic {
+    interface HTMLElements {
+      stack?: Omit<HTMLElement<"div">, "gap"> & {
+        inline?: boolean;
+        justify?: ResponsiveCSSValue<"justifyContent">;
+        align?: ResponsiveCSSValue<"alignItems">;
+        direction?: "horizontal" | "vertical";
+        gap?:
+          | ResponsiveCSSValue<"marginRight">
+          | ResponsiveValue<string | number>;
+      };
+      flex?: HTMLElement<"div">;
+      column?: HTMLElement<"div">;
+      row?: HTMLElement<"div">;
+      grid?: HTMLElement<"div">;
+    }
   }
+}
 
-  return React.createElement(
-    (magic as any).div,
-    Object.assign({}, props, { css: merge(styles, css) })
-  );
-};
-
-Stack.displayName = "Magic(stack)";
-(magic as any)["stack"] = Stack;
-
-const Row = Stack.bind({});
-Row.displayName = "Magic(row)";
-(Row as any).defaultProps = {
-  direction: "horizontal",
-};
-
-(magic as any)["row"] = Row;
-
-const Column = Stack.bind({});
-Column.displayName = "Magic(column)";
-(Column as any).defaultProps = {
-  direction: "vertical",
-};
-(magic as any)["column"] = Column;
-
-(magic as any)["grid"] = createMagic("div")(
-  {
-    display: "grid",
+const transformer = ({ inline, direction, gap = 0, ...props }: any) => ({
+  ...props,
+  display: inline ? "inline-flex" : "flex",
+  flexDirection: Array.isArray(direction)
+    ? direction.map((d) => (d === "vertical" ? "column" : "row"))
+    : direction === "vertical"
+    ? "column"
+    : "row",
+  css: {
+    "> *:not(:last-child)": Array.isArray(direction)
+      ? direction.map((d) => ({
+          [d === "vertical" ? "marginBottom" : "marginRight"]: gap,
+          [d === "vertical" ? "marginRight" : "marginBottom"]: 0,
+        }))
+      : {
+          [direction === "vertical" ? "marginBottom" : "marginRight"]: gap,
+        },
   },
-  "grid"
+});
+
+magic.stack = magic.custom("div", transformer, "stack");
+magic.row = magic.custom(
+  "div",
+  (props: any) => transformer({ direction: "horizontal", ...props }),
+  "row"
 );
+
+magic.column = magic.custom(
+  "div",
+  (props: any) => transformer({ direction: "vertical", ...props }),
+  "column"
+);
+magic.grid = magic.custom("div", { display: "grid" }, "grid");

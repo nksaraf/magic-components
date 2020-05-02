@@ -17,15 +17,29 @@
     "prepublishOnly": "yarn build",
     "start": "pkger"
   },
-  "pkger": {},
+  "pkger": {
+    "entries": [
+      {
+        "name": "babel",
+        "target": "node"
+      }
+    ]
+  },
   "prettier": {},
   "dependencies": {
     "@nksaraf/colors": "^0.0.3",
+    "@reach/listbox": "^0.10.1",
+    "@reach/menu-button": "^0.10.1",
+    "@reach/utils": "^0.10.1",
+    "@types/hoist-non-react-statics": "^3.3.1",
     "color": "^3.1.2",
     "deepmerge": "^4.2.2",
     "framer-motion": "^2.0.0-beta.55",
+    "hoist-non-react-statics": "^3.3.2",
     "inline-style-prefixer": "^6.0.0",
-    "pkger": "^0.0.2-next.13"
+    "pkger": "^0.0.2-next.13",
+    "preval.macro": "^5.0.0",
+    "tiny-invariant": "^1.1.0"
   },
   "devDependencies": {
     "@types/color": "^3.0.1",
@@ -33,7 +47,7 @@
     "@types/node": "^13.13.2",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
-    "next": "^9.3.4",
+    "next": "^9.3.7-canary.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "typescript": "3.8.3"
