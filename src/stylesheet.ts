@@ -75,7 +75,6 @@ export const cssToString: Parse = (obj, paren, wrapper) => {
     // Else just push the rule
     return outer + rule + blocks;
   }
-
   return outer + blocks;
 };
 

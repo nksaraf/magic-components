@@ -56,16 +56,16 @@ const transformer = ({ inline, direction, gap = 0, ...props }: any) => ({
   },
 });
 
-magic.stack = magic.custom("div", transformer, "stack");
+magic.stack = magic.custom("div", transformer, { displayName: "stack" });
 magic.row = magic.custom(
   "div",
   (props: any) => transformer({ direction: "horizontal", ...props }),
-  "row"
+  { displayName: "row" }
 );
 
 magic.column = magic.custom(
   "div",
   (props: any) => transformer({ direction: "vertical", ...props }),
-  "column"
+  { displayName: "column" }
 );
-magic.grid = magic.custom("div", { display: "grid" }, "grid");
+magic.grid = magic.custom("div", { display: "grid" }, { displayName: "grid" });

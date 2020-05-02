@@ -91,11 +91,11 @@ declare global {
 
 export const createMagic = <ComponentType extends As>(
   Component: ComponentType,
-  defaultProps:
-    | Magic.ComponentProps<ComponentType>
-    | ((
-        props: Magic.ComponentProps<ComponentType>
-      ) => Magic.ComponentProps<ComponentType>) = {} as any,
+  defaultProps: any = {},
+  // | Magic.ComponentProps<ComponentType>
+  // | ((
+  //     props: Magic.ComponentProps<ComponentType>
+  //   ) => Magic.ComponentProps<ComponentType>) = {} as any,
   {
     displayName = typeof Component === "string"
       ? (Component as string)

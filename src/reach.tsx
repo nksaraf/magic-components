@@ -1,6 +1,6 @@
 import { magic } from "./magic";
 import {
-  Menu,
+  Menu as ReachMenu,
   MenuButton,
   MenuItem,
   MenuList,
@@ -9,6 +9,7 @@ import {
   MenuLink,
   useMenuButtonContext,
 } from "@reach/menu-button";
+import { Global } from "./global";
 import React from "react";
 import { AnimatePresence } from "framer-motion";
 
@@ -25,13 +26,17 @@ declare global {
       "menu-item"?: HTMLElement<"div"> &
         Omit<MenuItemImplProps, keyof HTMLElement<"div">>;
       "menu-list"?: HTMLElement<typeof MenuList>;
-      "menu-link"?: HTMLElement<any>;
+      "menu-link"?: HTMLElement<typeof MenuLink>;
+      "menu-popover"?: HTMLElement<typeof MenuPopover>;
+      "menu-items"?: HTMLElement<typeof MenuItems>;
 
       menubutton?: HTMLElement<typeof MenuButton>;
       menuitem?: HTMLElement<"div"> &
         Omit<MenuItemImplProps, keyof HTMLElement<"div">>;
       menulist?: HTMLElement<typeof MenuList>;
-      menulink?: HTMLElement<any>;
+      menulink?: HTMLElement<typeof MenuLink>;
+      menupopover?: HTMLElement<typeof MenuPopover>;
+      menuitems?: HTMLElement<typeof MenuItems>;
     }
   }
 }
@@ -104,9 +109,62 @@ export const MenuPopover = React.forwardRef<any, any>(function MenuPopover(
   // );
 });
 
-magic.menu = Menu as any;
+const withGlobalStyle = (
+  id: string,
+  css: {
+    [k: string]: Magic.StyleProps;
+  },
+  Component: any
+) => {
+  return React.forwardRef((props, ref) => (
+    <>
+      <Global id={id} css={css} />
+      <Component ref={ref} {...props} />
+    </>
+  ));
+};
+
+magic.menu = withGlobalStyle(
+  "reach-menu-button-base",
+  {
+    ":root": { "-ReachMenuButton": "1" },
+    "[data-reach-menu],\n[data-reach-menu-popover]": {
+      display: "block",
+      position: "absolute",
+    },
+    // "[data-reach-menu][hidden],\n[data-reach-menu-popover][hidden]": {
+    //   opacity: "0",
+    // },
+    "[data-reach-menu-list],\n[data-reach-menu-items]": {
+      display: "block",
+      whiteSpace: "nowrap",
+      border: "solid 1px hsla(0, 0%, 0%, 0.25)",
+      background: "hsla(0, 100%, 100%, 0.99)",
+      outline: "none",
+      padding: "1rem 0",
+      fontSize: "85%",
+    },
+    "[data-reach-menu-item]": {
+      display: "block",
+      userSelect: "none",
+      cursor: "pointer",
+      color: "inherit",
+      font: "inherit",
+      textDecoration: "initial",
+      padding: "5px 20px",
+    },
+    "[data-reach-menu-item][data-selected]": {
+      background: "hsl(211, 81%, 36%)",
+      color: "white",
+      outline: "none",
+    },
+  },
+  ReachMenu
+) as any;
+
 magic["menu-button"] = magic.custom(MenuButton);
 magic.menubutton = magic["menu-button"];
+
 magic["menu-item"] = magic.custom(
   MenuItem,
   { as: magic.div },

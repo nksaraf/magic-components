@@ -1,6 +1,6 @@
 import { addCSS, sheet } from "./stylesheet";
 import { useTheme } from "./theme";
-import { strictCssParser } from "./parser";
+import { strictCssParser, linientCssParser } from "./parser";
 import React from "react";
 import { magic } from "./magic";
 
@@ -33,11 +33,11 @@ export const Global = ({ style = {}, css = {}, id }: GlobalStyleProps) => {
 
     const styles: any = {};
     for (var item in style) {
-      const [styleCss, _] = strictCssParser(style[item], theme);
+      const styleCss = linientCssParser(style[item], theme);
       styles[item] = styleCss;
     }
     for (var item in css) {
-      const [cssCss, _] = strictCssParser(css[item], theme);
+      const cssCss = linientCssParser(css[item], theme);
       styles[item] = cssCss;
     }
     if (id) {

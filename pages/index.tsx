@@ -6,42 +6,6 @@ function Example() {
   const [open, setOpen] = React.useState(false);
   return (
     <>
-      <style
-        id="reach-menu-button-base"
-        css={{
-          // ":root": { "--reach-menu-button": "1" },
-          "[data-reach-menu],\n[data-reach-menu-popover]": {
-            display: "block",
-            position: "absolute",
-          },
-          // "[data-reach-menu][hidden],\n[data-reach-menu-popover][hidden]": {
-          //   opacity: "0",
-          // },
-          "[data-reach-menu-list],\n[data-reach-menu-items]": {
-            display: "block",
-            whiteSpace: "nowrap",
-            border: "solid 1px hsla(0, 0%, 0%, 0.25)",
-            background: "hsla(0, 100%, 100%, 0.99)",
-            outline: "none",
-            padding: "1rem 0",
-            fontSize: "85%",
-          },
-          "[data-reach-menu-item]": {
-            display: "block",
-            userSelect: "none",
-            cursor: "pointer",
-            color: "inherit",
-            font: "inherit",
-            textDecoration: "initial",
-            padding: "5px 20px",
-          },
-          "[data-reach-menu-item][data-selected]": {
-            background: "hsl(211, 81%, 36%)",
-            color: "white",
-            outline: "none",
-          },
-        }}
-      />
       <menu>
         <menu-button onMouseDown={() => {}}>
           Actions <span aria-hidden>▾</span>
@@ -71,11 +35,6 @@ function Example() {
             </menu-link>
           </menu-items>
         </menu-popover>
-        {/* {({ isExpanded }) => (
-          <> */}
-
-        {/* </>
-        )} */}
       </menu>
     </>
   );

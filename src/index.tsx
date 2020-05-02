@@ -4,9 +4,9 @@ export * from "./stylesheet";
 export * from "./base-theme";
 export * from "./system";
 export * from "./magic";
+export * from "./global";
 export * from "./dom";
 export * from "./reach";
-export * from "./global";
 export * from "./stack";
 export * from "./ssr";
 

@@ -36,8 +36,6 @@ module.exports = function magicBabel(babel: any) {
     );
   };
   const namespacedElement = (path: { node: { name: { name: any } } }) => {
-    console.log(namespace, path.node.name.name);
-
     return t.jsxMemberExpression(
       t.jsxIdentifier(namespace),
       t.jsxIdentifier(path.node.name.name.replace("-", ""))
