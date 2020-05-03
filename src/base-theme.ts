@@ -1,9 +1,8 @@
 import { colors } from '@nksaraf/colors';
-// const Color = require("color");
 
-function fontStack(fonts) {
+function fontStack(fonts: string[]) {
   return fonts
-    .map(font => (font.includes(" ") ? `"${font}"` : font))
+    .map((font: string) => (font.includes(" ") ? `"${font}"` : font))
     .join(", ");
 }
 
