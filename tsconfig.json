@@ -12,11 +12,11 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
       "magic-components": ["./src/index.tsx"]
-    }
+    },
+    "jsx": "preserve"
   },
   "exclude": ["node_modules"],
   "include": ["next-env.d.ts", "src/**/*.{ts,tsx}", "pages/**/*.{ts,tsx}"]

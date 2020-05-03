@@ -23,16 +23,14 @@ declare global {
       >;
       // @ts-ignore
       "menu-button"?: HTMLElement<typeof MenuButton>;
-      "menu-item"?: HTMLElement<"div"> &
-        Omit<MenuItemImplProps, keyof HTMLElement<"div">>;
+      "menu-item"?: any;
       "menu-list"?: HTMLElement<typeof MenuList>;
       "menu-link"?: HTMLElement<typeof MenuLink>;
       "menu-popover"?: HTMLElement<typeof MenuPopover>;
       "menu-items"?: HTMLElement<typeof MenuItems>;
 
       menubutton?: HTMLElement<typeof MenuButton>;
-      menuitem?: HTMLElement<"div"> &
-        Omit<MenuItemImplProps, keyof HTMLElement<"div">>;
+      menuitem?: any;
       menulist?: HTMLElement<typeof MenuList>;
       menulink?: HTMLElement<typeof MenuLink>;
       menupopover?: HTMLElement<typeof MenuPopover>;
@@ -53,6 +51,8 @@ export const MenuPopover = React.forwardRef<any, any>(function MenuPopover(
     // popoverRef,
     isExpanded,
   } = useMenuButtonContext();
+
+  console.log(isExpanded);
 
   // const ref = useForkedRef(popoverRef, forwardedRef);
 
@@ -98,7 +98,9 @@ export const MenuPopover = React.forwardRef<any, any>(function MenuPopover(
   // ) : (
   return (
     <AnimatePresence>
-      {isExpanded && <magic.div {...commonProps} />}
+      {isExpanded ? (
+        <magic.div exit={{ display: "none" }} {...commonProps} />
+      ) : null}
     </AnimatePresence>
   );
   // );

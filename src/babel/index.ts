@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { elements } from "../elements";
 
 module.exports = function magicBabel(babel: any) {

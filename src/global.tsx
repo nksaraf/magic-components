@@ -89,7 +89,7 @@ export function important<T>(s: T): T {
 export const withGlobalStyle = (
   id: string,
   css: {
-    [k: string]: Magic.StyleProps;
+    [k: string]: any;
   },
   Component: any
 ) => {
