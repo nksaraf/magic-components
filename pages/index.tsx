@@ -3,7 +3,6 @@ import React from "react";
 import { AnimatePresence, motion, AnimateSharedLayout } from "../src";
 
 function Example() {
-  const [open, setOpen] = React.useState(false);
   return (
     <>
       <menu>
@@ -64,6 +63,7 @@ export default () => {
         <title>World</title>
         <link href="hello" />
       </Head>
+      {/* <Random /> */}
       <Example />
     </>
   );
@@ -72,8 +72,7 @@ export default () => {
 const Random = () => {
   return (
     <>
-      {" "}
-      <row animate={{ x: 100 }}>
+      <row animate={{ x: 100 }} gap={2}>
         <div>hello world</div>
         <div>hello other world</div>
       </row>

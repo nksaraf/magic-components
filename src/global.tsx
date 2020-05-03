@@ -85,3 +85,18 @@ export function important<T>(s: T): T {
     );
   }
 }
+
+export const withGlobalStyle = (
+  id: string,
+  css: {
+    [k: string]: Magic.StyleProps;
+  },
+  Component: any
+) => {
+  return React.forwardRef((props, ref) => (
+    <>
+      <Global id={id} css={css} />
+      <Component ref={ref} {...props} />
+    </>
+  ));
+};

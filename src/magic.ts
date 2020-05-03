@@ -135,7 +135,7 @@ export const createMagic = <ComponentType extends As>(
         as: asProp,
         css,
         noMotion = false,
-        props: normalProps,
+        asProps: normalProps,
         ...props
       } = magicProps;
 
@@ -231,3 +231,12 @@ export const createMagic = <ComponentType extends As>(
 export const magic: Magic.MagicComponents = {
   custom: createMagic,
 } as any;
+
+export const addMagicComponent = (name: string, Component: any) => {
+  if (name.indexOf("-") >= 0) {
+    (magic as any)[name.replace("-", "")] = Component;
+  }
+
+  (magic as any)[name] = Component;
+  Component.displayName = `Magic(${name})`;
+};

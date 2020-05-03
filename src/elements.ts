@@ -129,4 +129,6 @@ export const reachElements = [
   "menu-items",
 ];
 
-export const elements = domElements.concat(reachElements);
+export const stackElements = ["stack", "flex", "column", "row", "grid"];
+
+export const elements = domElements.concat(reachElements).concat(stackElements);
