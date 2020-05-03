@@ -4,7 +4,7 @@ import Document, {
   NextScript,
   DocumentContext,
 } from "next/document";
-import { extractMagicStyles } from "magic-components";
+import { extractMagicStyles } from "../src";
 
 export default class MyDocument extends Document<{ style: any }> {
   static async getInitialProps(props: DocumentContext) {

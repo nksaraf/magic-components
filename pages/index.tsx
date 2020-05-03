@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React from "react";
-import { AnimatePresence, motion, AnimateSharedLayout } from "../src";
+import { AnimatePresence, AnimateSharedLayout } from "../src";
 
 function Example() {
   return (
@@ -12,9 +12,9 @@ function Example() {
         <menu-popover
           // animate
           color="red.100"
-          // initial={{ scale: 0, y: "-40%", x: "-50%", opacity: 0 }}
-          // animate={{ scale: 1, y: "0%", x: "0%", opacity: 1 }}
-          // exit={{ scale: 0, y: "-40%", x: "-50%", opacity: 0 }}
+          initial={{ scale: 0, y: "-40%", x: "-50%", opacity: 0 }}
+          animate={{ scale: 1, y: "0%", x: "0%", opacity: 1 }}
+          exit={{ scale: 0, y: "-40%", x: "-50%", opacity: 0 }}
         >
           <menu-items>
             <menu-item

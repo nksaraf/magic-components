@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "./theme";
 import { addCSS, MAGIC_REGEX, sheet } from "./stylesheet";
+import "./style-config";
 import { strictCssParser, linientCssParser } from "./parser";
 import { motionParser } from "./motion";
 import { MotionProps } from "framer-motion";

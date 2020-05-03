@@ -716,6 +716,7 @@ declare global {
         keyof CSS.Properties
       >]?: ResponsiveValue<string | number | 0>;
     };
+    
     export type StyleProps = ResponsiveStyleProps & ResponsiveStyleAliases;
 
     export type CSSObject<K> = K extends keyof StyleProps
