@@ -1,6 +1,6 @@
 {
   "name": "magic-components",
-  "version": "0.0.2-beta.26",
+  "version": "0.0.2-beta.28",
   "description": "",
   "repository": "Nikhil Saraf/magic-components",
   "license": "MIT",
@@ -12,7 +12,7 @@
   "browser": "dist/esm/magic-components.js",
   "types": "dist/types",
   "scripts": {
-    "build": "pkger",
+    "build": "pkger build",
     "dev": "next",
     "prepublishOnly": "yarn build",
     "start": "pkger"
@@ -37,7 +37,7 @@
     "framer-motion": "^2.0.0-beta.55",
     "hoist-non-react-statics": "^3.3.2",
     "inline-style-prefixer": "^6.0.0",
-    "pkger": "^0.0.2-next.13",
+    "pkger": "^0.0.2-next.16",
     "preval.macro": "^5.0.0",
     "tiny-invariant": "^1.1.0"
   },
