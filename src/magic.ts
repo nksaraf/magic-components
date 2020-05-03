@@ -8,14 +8,22 @@ import { motionParser } from "./motion";
 import { MotionProps } from "framer-motion";
 import * as ReactTypes from "react";
 import hoistNonReactStatics from "hoist-non-react-statics";
-import { PropsWithAs, As, forwardRefWithAs } from "@reach/utils";
+import {
+  PropsWithAs,
+  As,
+  forwardRefWithAs,
+  ComponentWithAs,
+} from "@reach/utils";
 import { merge } from "./system";
 
 declare global {
   namespace Magic {
     export interface CSSProp {
-      css?: {
-        [K in string]: CSSObject<K>;
+      // css?: {
+      //   [K in string]: CSSObject<K>;
+      // };
+      css?: StyleProps & {
+        [K: string]: StyleProps | ResponsiveValue<string | number | undefined>;
       };
     }
 
@@ -46,31 +54,39 @@ declare global {
     //   T
     // >;
 
-    export interface ComponentWithAs<ComponentType extends As, ComponentProps> {
-      // <TT extends As>(
-      //   props: PropsWithAs<TT, ComponentProps>
-      // ): ReactTypes.ReactElement | null;
-      (
-        props: PropsWithAs<ComponentType, ComponentProps>
-      ): ReactTypes.ReactElement | null;
-      displayName?: string;
-      // // propTypes?: React.WeakValidationMap<PropsWithAs<ComponentType, ComponentProps>>;
-      // // contextTypes?: React.ValidationMap<any>;
-      defaultProps?: any;
-    }
+    // export interface ComponentWithAs<ComponentType extends As, ComponentProps> {
+    //   // <TT extends As>(
+    //   //   props: PropsWithAs<TT, ComponentProps>
+    //   // ): ReactTypes.ReactElement | null;
+    //   (
+    //     props: PropsWithAs<ComponentType, ComponentProps>
+    //   ): ReactTypes.ReactElement | null;
+    //   displayName?: string;
+    //   // // propTypes?: React.WeakValidationMap<PropsWithAs<ComponentType, ComponentProps>>;
+    //   // // contextTypes?: React.ValidationMap<any>;
+    //   defaultProps?: any;
+    // }
 
     export type HTMLElement<T extends As> = ComponentProps<T>;
 
+    export interface HTMLElementProps {}
+
     export type JSXElements = {
       [K in Exclude<
-        keyof JSX.IntrinsicElements,
+        keyof ReactTypes.ReactHTML,
         "style"
-      >]: ReactTypes.ComponentType<JSX.IntrinsicElements[K]>;
+      >]: ReactTypes.ReactHTML[K];
     };
 
-    export interface HTMLElements {}
+    export type CustomJSXElements = {
+      [K in keyof HTMLElementProps]: ReactTypes.ComponentType<
+        HTMLElementProps[K]
+      >;
+    };
 
-    export interface MagicComponents extends JSXElements {
+    export interface MagicComponents
+      extends Omit<JSXElements, keyof HTMLElementProps>,
+        CustomJSXElements {
       // style: React.ElementType<StyleTagProps>;
       custom: typeof createMagic;
       // <ComponentType extends As>(
@@ -86,7 +102,7 @@ declare global {
   }
 
   namespace JSX {
-    interface IntrinsicElements extends Magic.HTMLElements {}
+    interface IntrinsicElements extends Magic.HTMLElementProps {}
   }
 }
 
@@ -226,7 +242,7 @@ export const createMagic = <ComponentType extends As>(
 
   hoistNonReactStatics(Magic, Component as any);
   Magic.displayName = `Magic(${displayName})`;
-  return Magic as Magic.ComponentWithAs<ComponentType, Magic.MagicProps>;
+  return Magic as ComponentWithAs<ComponentType, Magic.MagicProps>;
 };
 
 export const magic: Magic.MagicComponents = {

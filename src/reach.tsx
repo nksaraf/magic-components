@@ -5,36 +5,38 @@ import {
   MenuItem,
   MenuList,
   MenuItems,
+  MenuItemProps,
   MenuItemImplProps,
   MenuLink,
   useMenuButtonContext,
+  MenuButtonProps,
+  MenuListProps,
+  MenuItemsProps,
+  MenuLinkProps,
 } from "@reach/menu-button";
+import { PropsWithAs, As, useForkedRef } from "@reach/utils";
 import { withGlobalStyle } from "./global";
 import React from "react";
 import { AnimatePresence } from "framer-motion";
 
 declare global {
   namespace Magic {
-    interface HTMLElements {
-      menu?: Omit<
-        React.ComponentProps<typeof ReachMenu>,
-        "children"
-        // keyof React.HTMLAttributes<any>
-      >;
-      // @ts-ignore
-      "menu-button"?: HTMLElement<typeof MenuButton>;
-      "menu-item"?: any;
-      "menu-list"?: HTMLElement<typeof MenuList>;
-      "menu-link"?: HTMLElement<typeof MenuLink>;
-      "menu-popover"?: HTMLElement<typeof MenuPopover>;
-      "menu-items"?: HTMLElement<typeof MenuItems>;
+    interface HTMLElementProps {
+      menu?: Omit<React.ComponentProps<typeof ReachMenu>, "children">;
 
-      menubutton?: HTMLElement<typeof MenuButton>;
-      menuitem?: any;
-      menulist?: HTMLElement<typeof MenuList>;
-      menulink?: HTMLElement<typeof MenuLink>;
+      "menu-button"?: PropsWithAs<typeof magic.button, MenuButtonProps>;
+      "menu-item"?: PropsWithAs<typeof magic.div, MenuItemProps>;
+      "menu-list"?: PropsWithAs<typeof magic.div, MenuListProps>;
+      "menu-link"?: PropsWithAs<typeof magic.a, MenuLinkProps>;
+      "menu-popover"?: HTMLElement<typeof MenuPopover>;
+      "menu-items"?: PropsWithAs<typeof magic.div, MenuItemsProps>;
+
+      menubutton?: PropsWithAs<typeof magic.button, MenuButtonProps>;
+      menuitem?: PropsWithAs<typeof magic.div, MenuItemProps>;
+      menulist?: PropsWithAs<typeof magic.div, MenuListProps>;
+      menulink?: PropsWithAs<typeof magic.a, MenuLinkProps>;
       menupopover?: HTMLElement<typeof MenuPopover>;
-      menuitems?: HTMLElement<typeof MenuItems>;
+      menuitems?: PropsWithAs<typeof magic.div, MenuItemsProps>;
     }
   }
 }
@@ -147,24 +149,43 @@ addMagicComponent(
   )
 );
 
-addMagicComponent("menu-button", magic.custom(MenuButton));
+addMagicComponent(
+  "menu-button",
+  ({
+    as = magic.button,
+    ...props
+  }: PropsWithAs<typeof magic.div, MenuButtonProps>) => (
+    <MenuButton as={as} {...props} />
+  )
+);
 addMagicComponent(
   "menu-item",
-  magic.custom(MenuItem, { as: magic.div }, { forwardAs: true })
+  ({
+    as = magic.div,
+    ...props
+  }: PropsWithAs<typeof magic.div, MenuItemProps>) => (
+    <MenuItem as={as} {...props} />
+  )
 );
 
-addMagicComponent(
-  "menu-list",
-  magic.custom(MenuList, { as: magic.div }, { forwardAs: true })
-);
+addMagicComponent("menu-list", ({ as = magic.div, children, ...props }) => (
+  <MenuList as={as} children={children} {...props} />
+));
 
 addMagicComponent("menu-popover", MenuPopover);
 addMagicComponent(
   "menu-items",
-  magic.custom(MenuItems, { as: magic.div }, { forwardAs: true })
+  ({
+    as = magic.div,
+    ...props
+  }: PropsWithAs<typeof magic.div, MenuItemsProps>) => (
+    <MenuItems as={as} {...props} />
+  )
 );
 
 addMagicComponent(
   "menu-link",
-  magic.custom(MenuLink, { as: magic.a }, { forwardAs: true })
+  ({ as = magic.a, ...props }: PropsWithAs<typeof magic.a, MenuLinkProps>) => (
+    <MenuLink as={as} {...props} />
+  )
 );

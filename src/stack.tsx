@@ -18,16 +18,8 @@ import { magic } from "./magic";
 
 declare global {
   namespace Magic {
-    interface HTMLElements {
-      stack?: Omit<HTMLElement<"div">, "gap"> & {
-        inline?: boolean;
-        justify?: ResponsiveCSSValue<"justifyContent">;
-        align?: ResponsiveCSSValue<"alignItems">;
-        direction?: "horizontal" | "vertical";
-        gap?:
-          | ResponsiveCSSValue<"marginRight">
-          | ResponsiveValue<string | number>;
-      };
+    interface HTMLElementProps {
+      stack?: HTMLElement<"div">;
       flex?: HTMLElement<"div">;
       column?: HTMLElement<"div">;
       row?: HTMLElement<"div">;

@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React from "react";
-import { AnimatePresence, AnimateSharedLayout } from "../src";
+import { AnimatePresence, AnimateSharedLayout, magic } from "../src";
 
 function Example() {
   return (
@@ -18,7 +18,7 @@ function Example() {
         >
           <menu-items>
             <menu-item
-              color="black"
+              color="blue.500"
               whileHover={{ backgroundColor: "red.100" }}
               onSelect={() => alert("Download")}
             >
@@ -82,14 +82,14 @@ const Random = () => {
         <div style={{ marginLeft: 100, width: "100%" }}>hello world</div>
         <div>hello other world</div>
       </row>
-      <stack gap={4}>
+      <stack gap={4} direction="vertical">
         <p
           id="hello"
           css={{
             "&:hover": {
               color: "green.100",
             },
-            color: ["red.100", "blue.100", "green.100"],
+            color: "red.100",
           }}
         >
           Hello World Ne Iadsadw
