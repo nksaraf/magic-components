@@ -14,7 +14,7 @@ import {
   MenuItemsProps,
   MenuLinkProps,
 } from "@reach/menu-button";
-import { PropsWithAs, As, useForkedRef } from "@reach/utils";
+import { PropsWithAs, As, useForkedRef, ComponentWithAs } from "@reach/utils";
 import { withGlobalStyle } from "./global";
 import React from "react";
 import { AnimatePresence } from "framer-motion";
@@ -24,19 +24,40 @@ declare global {
     interface HTMLElementProps {
       menu?: Omit<React.ComponentProps<typeof ReachMenu>, "children">;
 
-      "menu-button"?: PropsWithAs<typeof magic.button, MenuButtonProps>;
-      "menu-item"?: PropsWithAs<typeof magic.div, MenuItemProps>;
-      "menu-list"?: PropsWithAs<typeof magic.div, MenuListProps>;
-      "menu-link"?: PropsWithAs<typeof magic.a, MenuLinkProps>;
+      "menu-button"?: PropsWithAs<
+        ComponentWithAs<"button", MagicProps>,
+        MenuButtonProps
+      >;
+      "menu-item"?: PropsWithAs<
+        ComponentWithAs<"div", MagicProps>,
+        MenuItemProps
+      >;
+      "menu-list"?: PropsWithAs<
+        ComponentWithAs<"div", MagicProps>,
+        MenuListProps
+      >;
+      "menu-link"?: PropsWithAs<
+        ComponentWithAs<"a", MagicProps>,
+        MenuLinkProps
+      >;
       "menu-popover"?: HTMLElement<typeof MenuPopover>;
-      "menu-items"?: PropsWithAs<typeof magic.div, MenuItemsProps>;
+      "menu-items"?: PropsWithAs<
+        ComponentWithAs<"div", MagicProps>,
+        MenuItemsProps
+      >;
 
-      menubutton?: PropsWithAs<typeof magic.button, MenuButtonProps>;
-      menuitem?: PropsWithAs<typeof magic.div, MenuItemProps>;
-      menulist?: PropsWithAs<typeof magic.div, MenuListProps>;
-      menulink?: PropsWithAs<typeof magic.a, MenuLinkProps>;
+      menubutton?: PropsWithAs<
+        ComponentWithAs<"button", MagicProps>,
+        MenuButtonProps
+      >;
+      menuitem?: PropsWithAs<ComponentWithAs<"div", MagicProps>, MenuItemProps>;
+      menulist?: PropsWithAs<ComponentWithAs<"div", MagicProps>, MenuListProps>;
+      menulink?: PropsWithAs<ComponentWithAs<"a", MagicProps>, MenuLinkProps>;
       menupopover?: HTMLElement<typeof MenuPopover>;
-      menuitems?: PropsWithAs<typeof magic.div, MenuItemsProps>;
+      menuitems?: PropsWithAs<
+        ComponentWithAs<"div", MagicProps>,
+        MenuItemsProps
+      >;
     }
   }
 }

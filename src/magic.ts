@@ -95,6 +95,8 @@ declare global {
       //   displayName?: string
       // ) => ComponentWithAs<ComponentType, MagicProps>;
     }
+
+    export type NewJSXElements = Omit<HTMLElementProps, keyof JSXElements>;
   }
 
   namespace React {
@@ -102,7 +104,7 @@ declare global {
   }
 
   namespace JSX {
-    interface IntrinsicElements extends Magic.HTMLElementProps {}
+    interface IntrinsicElements extends Magic.NewJSXElements {}
   }
 }
 
