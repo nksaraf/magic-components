@@ -116,8 +116,9 @@ export const domElements = [
   "webview",
 
   /////////
-  "style",
 ];
+
+export const cssElements = ["style", "css"];
 
 export const reachElements = [
   "menu-button",
@@ -131,4 +132,7 @@ export const reachElements = [
 
 export const stackElements = ["stack", "flex", "column", "row", "grid"];
 
-export const elements = domElements.concat(reachElements).concat(stackElements);
+export const elements = domElements
+  .concat(reachElements)
+  .concat(stackElements)
+  .concat(cssElements);

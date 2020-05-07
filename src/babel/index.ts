@@ -50,15 +50,35 @@ module.exports = function magicBabel(babel: any) {
     visitor: {
       JSXOpeningElement(path: { node: { name: any } }) {
         if (isDOMElement(path)) {
-          path.node.name = namespacedElement(path);
-          addMagicImport(path, this);
+          const attributes = path.get("attributes");
+          let muggle = false;
+
+          attributes.forEach((attr) => {
+            if (attr.isJSXAttribute()) {
+              const jsxName = attr.get("name");
+              if (jsxName.isJSXIdentifier()) {
+                const attrName = jsxName.get("name").node;
+                if (attrName === "muggle" || attrName === "noMagic") {
+                  muggle = true;
+                  attr.remove();
+                }
+                if (path.node.name.name === "style" && attrName === "jsx") {
+                  muggle = true;
+                }
+              }
+            }
+          });
+          if (!muggle) {
+            path.node.name = namespacedElement(path);
+            addMagicImport(path, this);
+            const closingElement = path.parentPath.get("closingElement");
+            if (closingElement && closingElement.node) {
+              closingElement.node.name = namespacedElement(closingElement);
+            }
+          }
         }
       },
-      JSXClosingElement(path: { node: { name: any } }) {
-        if (isDOMElement(path)) {
-          path.node.name = namespacedElement(path);
-        }
-      },
+
       ImportDeclaration(path) {
         if (path.node.source.value === importLocation) {
           if (

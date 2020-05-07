@@ -170,43 +170,50 @@ addMagicComponent(
   )
 );
 
-addMagicComponent(
+const addReachComponent = <T, P>(
+  name: string,
+  Component: any,
+  asComponent: T,
+  defaultProps = {}
+) => {
+  addMagicComponent(
+    name,
+    React.forwardRef(
+      ({ as = asComponent, ...props }: PropsWithAs<T, P>, ref) => (
+        <Component as={as} {...defaultProps} {...props} ref={ref} />
+      )
+    )
+  );
+};
+
+addReachComponent<typeof magic.button, MenuButtonProps>(
   "menu-button",
-  ({
-    as = magic.button,
-    ...props
-  }: PropsWithAs<typeof magic.div, MenuButtonProps>) => (
-    <MenuButton as={as} {...props} />
-  )
-);
-addMagicComponent(
-  "menu-item",
-  ({
-    as = magic.div,
-    ...props
-  }: PropsWithAs<typeof magic.div, MenuItemProps>) => (
-    <MenuItem as={as} {...props} />
-  )
+  MenuButton,
+  magic.button
 );
 
-addMagicComponent("menu-list", ({ as = magic.div, children, ...props }) => (
-  <MenuList as={as} children={children} {...props} />
-));
+addReachComponent<typeof magic.div, MenuItemProps>(
+  "menu-item",
+  MenuItem,
+  magic.div
+);
+
+addReachComponent<typeof magic.div, MenuListProps>(
+  "menu-list",
+  MenuList,
+  magic.div
+);
+
+addReachComponent<typeof magic.div, MenuItemsProps>(
+  "menu-items",
+  MenuItems,
+  magic.div
+);
+
+addReachComponent<typeof magic.a, MenuLinkProps>(
+  "menu-link",
+  MenuLink,
+  magic.a
+);
 
 addMagicComponent("menu-popover", MenuPopover);
-addMagicComponent(
-  "menu-items",
-  ({
-    as = magic.div,
-    ...props
-  }: PropsWithAs<typeof magic.div, MenuItemsProps>) => (
-    <MenuItems as={as} {...props} />
-  )
-);
-
-addMagicComponent(
-  "menu-link",
-  ({ as = magic.a, ...props }: PropsWithAs<typeof magic.a, MenuLinkProps>) => (
-    <MenuLink as={as} {...props} />
-  )
-);

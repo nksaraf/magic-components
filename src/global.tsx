@@ -9,7 +9,12 @@ const globalCache: { [key: string]: any } = {};
 declare global {
   namespace Magic {
     interface MagicComponents {
+      css: React.ComponentType<StyleTagProps>;
       style: React.ComponentType<StyleTagProps>;
+    }
+
+    interface HTMLElementProps {
+      css?: StyleTagProps;
     }
   }
 }
@@ -49,13 +54,15 @@ export const Global = ({ style = {}, css = {}, id }: GlobalStyleProps) => {
   return <></>;
 };
 
-interface StyleTagProps extends GlobalStyleProps, Magic.MagicUtilityProps {
+export interface StyleTagProps
+  extends GlobalStyleProps,
+    Magic.MagicUtilityProps {
   jsx?: boolean;
 }
 
 export const styleElements = ["style"];
 
-const Style = ({
+export const Style = ({
   jsx = false,
   noMagic = false,
   muggle = false,
@@ -75,6 +82,9 @@ const Style = ({
 
 Style.displayName = "Magic(style)";
 magic.style = Style;
+
+magic.css = Style.bind({});
+magic.css.displayName = "Magic(css)";
 
 export function important<T>(s: T): T {
   if (typeof s === "string") {

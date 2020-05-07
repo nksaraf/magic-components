@@ -15,13 +15,11 @@ import {
   ComponentWithAs,
 } from "@reach/utils";
 import { merge } from "./system";
+import { GlobalStyleProps } from "./global";
 
 declare global {
   namespace Magic {
     export interface CSSProp {
-      // css?: {
-      //   [K in string]: CSSObject<K>;
-      // };
       css?: StyleProps & {
         [K: string]: StyleProps | ResponsiveValue<string | number | undefined>;
       };
@@ -132,8 +130,6 @@ export const createMagic = <ComponentType extends As>(
 
   const Magic = forwardRefWithAs<Magic.MagicProps, ComponentType>(
     (givenProps: Magic.ComponentProps<ComponentType>, ref) => {
-      // Grab a shallow copy of the props
-      // _ctx.p: is the props sent to the context
       // if noMagic from
       const { noMagic, muggle, ..._props } = givenProps;
 
@@ -245,6 +241,18 @@ export const createMagic = <ComponentType extends As>(
   hoistNonReactStatics(Magic, Component as any);
   Magic.displayName = `Magic(${displayName})`;
   return Magic as ComponentWithAs<ComponentType, Magic.MagicProps>;
+};
+
+export const css = (props: Magic.CSSProp["css"]) => {
+  const theme = useTheme();
+  const cssStyles = linientCssParser(props, theme);
+  return addCSS(cssStyles, sheet, false, false);
+};
+
+export const glob = (props: GlobalStyleProps["css"]) => {
+  const theme = useTheme();
+  const cssStyles = linientCssParser(props, theme);
+  return addCSS(cssStyles, sheet, true, false);
 };
 
 export const magic: Magic.MagicComponents = {

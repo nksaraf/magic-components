@@ -1,12 +1,22 @@
 import Head from "next/head";
 import React from "react";
-import { AnimatePresence, AnimateSharedLayout, magic } from "../src";
+import { AnimatePresence, AnimateSharedLayout, magic, css } from "../src";
 
 function Example() {
+  const ref = React.useRef();
+  if (typeof window !== "undefined") {
+    window.reference = ref;
+  }
   return (
     <>
       <menu>
-        <menu-button onMouseDown={() => {}}>
+        <menu-button
+          ref={ref}
+          onMouseDown={() => {}}
+          color="red.600"
+          whileHover={{ backgroundColor: "green.100" }}
+        >
+          {" "}
           Actions <span aria-hidden>▾</span>
         </menu-button>
         <menu-popover
@@ -22,7 +32,7 @@ function Example() {
               whileHover={{ backgroundColor: "red.100" }}
               onSelect={() => alert("Download")}
             >
-              Download
+              Download as
             </menu-item>
             <menu-item onSelect={() => alert("Copy")}>Create a Copy</menu-item>
             <menu-item onSelect={() => alert("Mark as Draft")}>
@@ -38,12 +48,6 @@ function Example() {
     </>
   );
 }
-
-// glob({
-//   body: {
-//     margin: "1px",
-//   },
-// });
 
 const variants = {
   visible: (i) => ({
@@ -63,7 +67,7 @@ export default () => {
         <title>World</title>
         <link href="hello" />
       </Head>
-      {/* <Random /> */}
+      <Random />
       <Example />
     </>
   );
@@ -76,11 +80,16 @@ const Random = () => {
         <div>hello world</div>
         <div>hello other world</div>
       </row>
-      <style css={{ body: { backgroundColor: "red.300" } }} id={"1"} />
+      <div muggle id="hello">
+        HELO
+      </div>
+      <css css={{ body: { backgroundColor: "red.300" } }} id={"1"} />
       <row bg="red.100" asProps={{ "aria-label": "a" }}>
         <div as="h1">hello world</div>
         <div style={{ marginLeft: 100, width: "100%" }}>hello world</div>
-        <div>hello other world</div>
+        <div className={css({ backgroundColor: "green.100" })}>
+          hello oth world
+        </div>
       </row>
       <stack gap={4} direction="vertical">
         <p
@@ -92,7 +101,7 @@ const Random = () => {
             color: "red.100",
           }}
         >
-          Hello World Ne Iadsadw
+          Hello Worl Iadsadw
         </p>
         <div color="green.900">Hello World Ne Iadsadw</div>
         <div
