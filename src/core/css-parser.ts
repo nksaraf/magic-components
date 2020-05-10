@@ -1,5 +1,5 @@
 import * as CSS from "csstype";
-import { get, createParser } from "./system";
+import { get } from "./utils";
 
 export interface ConfigStyle {
   /**
@@ -716,7 +716,7 @@ declare global {
         keyof CSS.Properties
       >]?: ResponsiveValue<string | number | 0>;
     };
-    
+
     export type StyleProps = ResponsiveStyleProps & ResponsiveStyleAliases;
 
     export type CSSObject<K> = K extends keyof StyleProps
@@ -724,3 +724,9 @@ declare global {
       : StyleProps;
   }
 }
+
+import { system } from "./system";
+
+export const strictCssParser = system(allConfig, "separate");
+
+export const linientCssParser = system(allConfig, "merge", false);

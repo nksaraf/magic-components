@@ -1,8 +1,8 @@
 import { addCSS, sheet } from "./stylesheet";
 import { useTheme } from "./theme";
-import { strictCssParser, linientCssParser } from "./parser";
+import { strictCssParser, linientCssParser } from "./core/css-parser";
 import React from "react";
-import { magic } from "./magic";
+import { magic } from "./core/magic";
 
 const globalCache: { [key: string]: any } = {};
 
@@ -95,6 +95,18 @@ export function important<T>(s: T): T {
     );
   }
 }
+
+export const css = (props: Magic.CSSProp["css"]) => {
+  const theme = useTheme();
+  const cssStyles = linientCssParser(props, theme);
+  return addCSS(cssStyles, sheet, false, false);
+};
+
+export const glob = (props: GlobalStyleProps["css"]) => {
+  const theme = useTheme();
+  const cssStyles = linientCssParser(props, theme);
+  return addCSS(cssStyles, sheet, true, false);
+};
 
 export const withGlobalStyle = (
   id: string,

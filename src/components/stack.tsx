@@ -1,4 +1,4 @@
-import { magic } from "./magic";
+import { magic } from "../core/magic";
 
 // import deepmerge from "deepmerge";
 

@@ -1,4 +1,4 @@
-import { magic, addMagicComponent } from "./magic";
+import { magic, addMagicComponent } from "../core/magic";
 import {
   Menu as ReachMenu,
   MenuButton,
@@ -6,7 +6,6 @@ import {
   MenuList,
   MenuItems,
   MenuItemProps,
-  MenuItemImplProps,
   MenuLink,
   useMenuButtonContext,
   MenuButtonProps,
@@ -15,7 +14,7 @@ import {
   MenuLinkProps,
 } from "@reach/menu-button";
 import { PropsWithAs, As, useForkedRef, ComponentWithAs } from "@reach/utils";
-import { withGlobalStyle } from "./global";
+import { withGlobalStyle } from "../global";
 import React from "react";
 import { AnimatePresence } from "framer-motion";
 
@@ -170,7 +169,7 @@ addMagicComponent(
   )
 );
 
-const addReachComponent = <T, P>(
+const addReachComponent = <T extends As, P>(
   name: string,
   Component: any,
   asComponent: T,

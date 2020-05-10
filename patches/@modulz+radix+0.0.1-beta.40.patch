@@ -1,0 +1,68 @@
+diff --git a/node_modules/@modulz/radix/dist/index.es.js b/node_modules/@modulz/radix/dist/index.es.js
+index 41075e1..c26b172 100644
+--- a/node_modules/@modulz/radix/dist/index.es.js
++++ b/node_modules/@modulz/radix/dist/index.es.js
+@@ -493,7 +493,7 @@ var Waiting = styled('div')(function (props) {
+ }, function (props) { return css$1(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n      animation: ", " 500ms linear infinite\n    "], ["\n      animation: ", " 500ms linear infinite\n    "])), waitingAnimation(props)); });
+ var templateObject_1, templateObject_2;
+ 
+-var cardStyleConfig = {
++export var cardStyleConfig = {
+     base: {
+         card: {
+             normal: {
+@@ -553,7 +553,7 @@ function createShadow(defaultOpacity) {
+     };
+ }
+ 
+-var cardLinkStyleConfigOverrides = {
++export var cardLinkStyleConfigOverrides = {
+     base: {
+         card: {
+             normal: {},
+@@ -599,7 +599,7 @@ var cardLinkStyleConfigOverrides = {
+         },
+     },
+ };
+-var cardLinkStyleConfig = merge({}, cardStyleConfig, cardLinkStyleConfigOverrides);
++export var cardLinkStyleConfig = merge({}, cardStyleConfig, cardLinkStyleConfigOverrides);
+ var CardLink = React.forwardRef(function (props, forwardedRef) { return (React.createElement(CardLink$1, __assign({}, props, { ref: forwardedRef, styleConfig: cardLinkStyleConfig }))); });
+ CardLink.defaultProps = {
+     variant: 'border',
+@@ -1230,7 +1230,7 @@ var ListGroup = styled('div')(css({
+ }), systemProps);
+ 
+ var Menu = function (props) { return (React.createElement(Menu$1, __assign({}, props, { styleConfig: menuStyleConfig }))); };
+-var menuStyleConfig = {
++export var menuStyleConfig = {
+     base: {
+         menu: {
+             normal: {
+@@ -1389,7 +1389,7 @@ Select.defaultProps = {
+     variant: 'normal',
+     size: 0,
+ };
+-var selectStyleConfigOverrides = {
++export var selectStyleConfigOverrides = {
+     base: {
+         button: {
+             normal: {
+@@ -1469,7 +1469,7 @@ var selectStyleConfigOverrides = {
+         },
+     },
+ };
+-var selectStyleConfig = merge({}, menuStyleConfig, selectStyleConfigOverrides);
++export var selectStyleConfig = merge({}, menuStyleConfig, selectStyleConfigOverrides);
+ 
+ var Slider = React.forwardRef(function (props, forwardedRef) {
+     var _a, _b, _c;
+diff --git a/node_modules/@modulz/radix/dist/index.js b/node_modules/@modulz/radix/dist/index.js
+index f3b9555..353066a 100644
+--- a/node_modules/@modulz/radix/dist/index.js
++++ b/node_modules/@modulz/radix/dist/index.js
+@@ -2245,3 +2245,5 @@ exports.Textarea = Textarea;
+ exports.ToggleButton = ToggleButton;
+ exports.Tooltip = Tooltip;
+ exports.theme = theme;
++
++exports.selectStyleConfig = selectStyleConfig;

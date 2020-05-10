@@ -1,5 +1,5 @@
 import { system } from "./system";
-import { linientCssParser } from "./parser";
+import { linientCssParser } from "./css-parser";
 
 const animTransform = (
   value: { [x: string]: any },

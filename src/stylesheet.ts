@@ -1,5 +1,6 @@
 // import { prefixProperty, prefixValue } from 'tiny-css-prefixer';
 import { prefix } from "inline-style-prefixer";
+import React from "react";
 /**
  * Parses the object into css, scoped, blocks
  * @param {Object} obj
@@ -12,7 +13,7 @@ export interface Parse {
   p?: any;
 }
 
-export const cssToString: Parse = (obj, paren, wrapper) => {
+export const printCSSObject: Parse = (obj, paren, wrapper) => {
   let outer = "";
   let blocks = "";
   let current = "";
@@ -40,10 +41,10 @@ export const cssToString: Parse = (obj, paren, wrapper) => {
       // If this is the `@keyframes`
       if (/@k/.test(key)) {
         // Take the key and inline it
-        blocks += key + "{" + cssToString(val, "", "") + "}";
+        blocks += key + "{" + printCSSObject(val, "", "") + "}";
       } else {
         // Call the parse for this block
-        blocks += cssToString(val, next, next == paren ? key : wrapper || "");
+        blocks += printCSSObject(val, next, next == paren ? key : wrapper || "");
       }
     } else {
       if (/^@i/.test(key)) {
@@ -176,7 +177,7 @@ export const addCSS = (
   // Parse the compiled
   const parsed =
     cache[className] ||
-    (cache[className] = cssToString(
+    (cache[className] = printCSSObject(
       prefix(compiled),
       isGlobal ? "" : className
     ));
@@ -194,5 +195,13 @@ if (typeof window !== "undefined") {
 } else {
   sheet = getSheet();
 }
+
+export const extractStyleTag = () => {
+  const css = extractCss();
+  return React.createElement("style", {
+    id: MAGIC_ID,
+    dangerouslySetInnerHTML: { __html: css },
+  });
+};
 
 export { sheet };

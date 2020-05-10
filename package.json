@@ -27,6 +27,7 @@
   },
   "prettier": {},
   "dependencies": {
+    "@modulz/radix": "^0.0.1-beta.40",
     "@nksaraf/colors": "^0.0.3",
     "@reach/listbox": "^0.10.1",
     "@reach/menu-button": "^0.10.1",
@@ -47,6 +48,7 @@
     "@types/node": "^13.13.4",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
+    "@types/styled-components": "^5.1.0",
     "next": "^9.3.7-canary.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

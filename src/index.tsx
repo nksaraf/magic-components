@@ -2,12 +2,12 @@ export * from "./theme";
 export * from "framer-motion";
 export * from "./stylesheet";
 export * from "./base-theme";
-export * from "./system";
-export * from "./magic";
-export * from "./dom";
+export * from "./core/system";
+export * from "./core/magic";
+export * from "./components/dom";
 export * from "./global";
-export * from "./reach";
-export * from "./stack";
-export * from "./ssr";
+export * from "./components/reach";
+export * from "./components/stack";
+export * from "./stylesheet";
 
 // export * from "./reset";

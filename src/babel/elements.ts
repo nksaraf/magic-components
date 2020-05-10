@@ -114,8 +114,6 @@ export const domElements = [
   "video",
   "wbr",
   "webview",
-
-  /////////
 ];
 
 export const cssElements = ["style", "css"];

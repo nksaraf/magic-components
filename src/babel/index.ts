@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { elements } from "../elements";
+import { elements } from "./elements";
 
 module.exports = function magicBabel(babel: any) {
   const { types: t } = babel;
