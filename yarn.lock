@@ -1323,10 +1323,10 @@
     "@types/styled-system__css" "^5.0.5"
     csstype "^2.6.7"
 
-"@modulz/radix@^0.0.1-beta.40":
-  version "0.0.1-beta.40"
-  resolved "https://registry.yarnpkg.com/@modulz/radix/-/radix-0.0.1-beta.40.tgz#ba8e28e3354ad2f1065a8fe1e89600c2eb334ad9"
-  integrity sha512-ypTjN5p5ohRQf7Bj18l6un1Qc3s6SZ0Cu5XI16/ZVaqhtMY1Qf5prbI/HIwSC20h6iHlDCj6uZGLZqgE5N9U3A==
+"@modulz/radix@^0.0.1-beta.41":
+  version "0.0.1-beta.41"
+  resolved "https://registry.yarnpkg.com/@modulz/radix/-/radix-0.0.1-beta.41.tgz#a170585d7b58a26715936d571ccec92c6c37c63b"
+  integrity sha512-+aRd4CJVI6xnKXonG3cCHu3a7G8MUFK9MtPtSY+kMkspASSstkyz8GFg01wjUTTluLlSPq5SfRLTaBB81zkraQ==
   dependencies:
     "@modulz/primitives" "0.0.1-39"
     "@modulz/radix-system" "^0.0.1-alpha.13"
