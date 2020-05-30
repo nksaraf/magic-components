@@ -1,4 +1,4 @@
-# magic-components
+# 🧙magic-components
 
 ```javascript
 import React from "react";
