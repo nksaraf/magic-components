@@ -1278,12 +1278,12 @@
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
 
-"@modulz/primitives@0.0.1-39":
-  version "0.0.1-39"
-  resolved "https://registry.yarnpkg.com/@modulz/primitives/-/primitives-0.0.1-39.tgz#ede664332b89de2bbe66d025e071a0a95c6fa442"
-  integrity sha512-3NI3HN41titTuj0NjkNab1o9tybzgGtm73f1FIKhnQ06zAZNMqLGGVyBfob6dYuMytbUexotq4dpPcJFgDYQug==
+"@modulz/primitives@0.0.1-40":
+  version "0.0.1-40"
+  resolved "https://registry.yarnpkg.com/@modulz/primitives/-/primitives-0.0.1-40.tgz#a113956fe7006a9b4d12ea53be5f279cf598f3fe"
+  integrity sha512-BtRaBRDm0hUX4La7lzWZrORYTwwDx/BDZpriWWeMKo3Z8Uy7upQLmgq55uwX1ZyedsjG3ZsALQrsN73jWQLWJw==
   dependencies:
-    "@modulz/radix-icons" "2.1.0"
+    "@modulz/radix-icons" "2.4.0"
     "@modulz/radix-system" "0.0.1-alpha.11"
     aria-hidden "^1.1.1"
     body-scroll-lock "^2.6.4"
@@ -1296,10 +1296,10 @@
     resize-observer-polyfill "^1.5.1"
     tabbable "^4.0.0"
 
-"@modulz/radix-icons@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@modulz/radix-icons/-/radix-icons-2.1.0.tgz#214142d956a1bf88326ade7b7ae628fedf5d6dad"
-  integrity sha512-eTSt5odB+n52LG8GFRNbJLSjKIf9Q/gUa61Nch/TQQKjU27Txxjo4eEilhvL/R1/FYyHjslyMJaKQ2IHLnrUBg==
+"@modulz/radix-icons@2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@modulz/radix-icons/-/radix-icons-2.4.0.tgz#62bb73265d39aa990a3adfb089f00cecbaf791c5"
+  integrity sha512-19pLQSJtzVtlOon86QC3gigjoigumIvAch79wXl3/yyaWsip6n2CgPHKu/5hKhjK2qYCr84b0VmZkmj1krAl/w==
 
 "@modulz/radix-system@0.0.1-alpha.11":
   version "0.0.1-alpha.11"
@@ -1323,12 +1323,12 @@
     "@types/styled-system__css" "^5.0.5"
     csstype "^2.6.7"
 
-"@modulz/radix@^0.0.1-beta.40":
-  version "0.0.1-beta.40"
-  resolved "https://registry.yarnpkg.com/@modulz/radix/-/radix-0.0.1-beta.40.tgz#ba8e28e3354ad2f1065a8fe1e89600c2eb334ad9"
-  integrity sha512-ypTjN5p5ohRQf7Bj18l6un1Qc3s6SZ0Cu5XI16/ZVaqhtMY1Qf5prbI/HIwSC20h6iHlDCj6uZGLZqgE5N9U3A==
+"@modulz/radix@^0.0.1-beta.44":
+  version "0.0.1-beta.44"
+  resolved "https://registry.yarnpkg.com/@modulz/radix/-/radix-0.0.1-beta.44.tgz#e08ec9e0d0dd08502d3c5ecde7b7322d8cb2e411"
+  integrity sha512-JUzXZ7FV5cam/NvcOLt6Vu/IzyHchNNdy+Cx2fu9Umf5E2KImgqW/i9pkcBJQObizbYbI3qgMpgbZFISQ+rHHQ==
   dependencies:
-    "@modulz/primitives" "0.0.1-39"
+    "@modulz/primitives" "0.0.1-40"
     "@modulz/radix-system" "^0.0.1-alpha.13"
     "@styled-system/css" "5.1.4"
     "@styled-system/theme-get" "^5.1.2"
