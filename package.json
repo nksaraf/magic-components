@@ -27,7 +27,7 @@
   },
   "prettier": {},
   "dependencies": {
-    "@modulz/radix": "^0.0.1-beta.40",
+    "@modulz/radix": "^0.0.1-beta.44",
     "@nksaraf/colors": "^0.0.3",
     "@reach/listbox": "^0.10.1",
     "@reach/menu-button": "^0.10.1",
