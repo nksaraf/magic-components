@@ -35,7 +35,7 @@
     "@types/hoist-non-react-statics": "^3.3.1",
     "color": "^3.1.2",
     "deepmerge": "^4.2.2",
-    "framer-motion": "^2.0.0-beta.59",
+    "framer-motion": "^2.0.0-rc.1",
     "hoist-non-react-statics": "^3.3.2",
     "inline-style-prefixer": "^6.0.0",
     "pkger": "^0.0.2-next.16",
