@@ -29,7 +29,7 @@
   "dependencies": {
     "@modulz/radix": "^0.0.1-beta.40",
     "@nksaraf/colors": "^0.0.3",
-    "@reach/listbox": "^0.10.1",
+    "@reach/listbox": "^0.14.0",
     "@reach/menu-button": "^0.10.1",
     "@reach/utils": "^0.10.1",
     "@types/hoist-non-react-statics": "^3.3.1",
