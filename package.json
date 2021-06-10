@@ -46,7 +46,7 @@
     "@types/color": "^3.0.1",
     "@types/inline-style-prefixer": "^5.0.0",
     "@types/node": "^13.13.4",
-    "@types/react": "^16.9.34",
+    "@types/react": "^17.0.11",
     "@types/react-dom": "^16.9.6",
     "@types/styled-components": "^5.1.0",
     "next": "^9.3.7-canary.5",
